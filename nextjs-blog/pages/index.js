@@ -1,10 +1,12 @@
 import Head from 'next/head';
-
+import App from "./App.tsx"
 
 export default function Home() {
   return (
   <div>
-     hi
+ <App/>
   </div>
   );
 }
+
+
