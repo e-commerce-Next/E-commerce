@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import App from "./App"
 
-export default function Home() {
+
+export default function App() {
   return (
     <div>
-        <App/>
+      hi
     </div>
   )
   
