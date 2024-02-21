@@ -23,12 +23,13 @@
     ]
   },
   "include": [
+    "video.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "app/index.js",
     ".next/types/**/*.ts"
-  ],
+, "app/homePage/Slidecarouss.jsx"  ],
   "exclude": [
     "node_modules"
   ]
