@@ -27,6 +27,8 @@ Products.hasMany(Reviews)
 Products.hasMany(Categories)
 Products.hasMany(Image)
 
+
+
 Favorit.belongsTo(User)
 Favorit.hasMany(Products)
 

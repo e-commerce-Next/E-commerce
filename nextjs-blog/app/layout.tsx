@@ -1,5 +1,9 @@
-// import './ui/global.css'
 
+import './ui/global.css'
+import CartPage from './homePage/categories'
+import  AllProducts from './categorypage/page'
+import Categories from './homePage/categories'
+import SlideCategories from './homePage/slidecarouss'
 
 export const metadata = {
   title: 'Create Next App',

@@ -1,16 +1,12 @@
 import Link from "next/link";
-import CategoriesJBL from "./Video/page";
-import NewArrivals from "./Newarrival/page";
-import Services from "./Services/page";
-import Footer from "./footer/page";
+
+// import AllProducts from
 export default function Home() {
   return (
     <div>
-      <CategoriesJBL/>
-      <NewArrivals/>
-      <Services/>
-      <Footer/>
-
+      <Link href={"/sorteproducts/Gaming"}>
+        <div>xxxxxxxxxxxs</div>
+      </Link>
     </div>
   );
 }
