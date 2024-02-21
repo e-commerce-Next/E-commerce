@@ -10,7 +10,7 @@ const CartPage = ()=> {
 
       
       <div>
-       {/* <SlideCategories/> */}
+       <SlideCategories/>
        <BrowseBy/>
      
       </div>

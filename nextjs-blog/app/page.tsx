@@ -1,3 +1,11 @@
+import FlashSales from './FlashSales/FlashSales'
+import AllProduct from './AllProduct/AllProduct'
+import AllProductHome from './AllProductHome/AllProductHome'
 export default function Home () {
-return <h1> welcome home</h1>
+
+return (
+    //  <FlashSales/>
+    <AllProduct/>
+    // <AllProductHome/>
+)
 }
