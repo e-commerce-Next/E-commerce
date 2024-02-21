@@ -102,7 +102,7 @@ export default function AllProduct() {
                                 <div className="flex items-center">
                                     {helperPricePromotion(product)}
                                     <div className="ml-auto flex">
-                                        <button><LuShoppingCart className="text-black w-28  h-8" /></button>
+                                        <button><LuShoppingCart className="text-black w-28  h-8"/></button>
                                         <button><FiHeart className="text-black w-28  h-8" /></button>
                                     </div>
                                 </div>

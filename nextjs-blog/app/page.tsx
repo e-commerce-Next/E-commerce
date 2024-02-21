@@ -1,12 +1,15 @@
-import Link from "next/link";
+import About from "./AboutUs/page"
+import Nav from "./Navbar/page"
+import AllProducts from "./categorypage/page"
+import Footer from "./footer/page"
 
-// import AllProducts from
-export default function Home() {
-  return (
+export default function Home () {
+return (
     <div>
-      <Link href={"/sorteproducts/Gaming"}>
-        <div>xxxxxxxxxxxs</div>
-      </Link>
+        <Nav/>
+        <AllProducts/>
+        <Footer/>
+        
     </div>
-  );
+)
 }
