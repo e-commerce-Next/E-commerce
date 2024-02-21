@@ -43,79 +43,12 @@ const AllProducts = () => {
 //   if (!data) return <p>No profile data</p>
 
 
-  // return (
-    // <Container sx={{ marginTop: "100px" }}>
-    //   <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-    //     <Box>
-    //       <div
-    //         style={{
-    //           height: "40px",
-    //           width: "20px",
-    //           borderRadius: "4px",
-    //           backgroundColor: "rgba(219, 68, 68, 1)",
-    //         }}
-    //       >
-    //         <Typography
-    //           sx={{
-    //             width: "100px",
-    //             marginLeft: "30px",
-    //             fontFamily: "Poppins",
-    //             color: "rgba(219, 68, 68, 1)",
-    //             paddingTop: "10px",
-    //             fontWeight: "bold",
-    //           }}
-    //         >
-    //           Our Products
-    //         </Typography>
-    //       </div>
-    //       <Typography
-    //         fontSize={40}
-    //         fontFamily={"Inter"}
-    //         letterSpacing={"4%"}
-    //         textColor={"common.black"}
-    //       >
-    //         Explore Our Products
-    //       </Typography>
-    //     </Box>
-    //     <Box>
-    //       <Button
-           
-    //         sx={{ width: "30px", height: "30px" }}
-    //         className="nav-btn"
-    //         onClick={() => {
-    //           var container = sliderRef.current;
-    //           container -= scrollAmount;
-    //         }}
-    //       >
-    //         <NavigateBeforeIcon fontSize="large" />
-    //       </Button>
-    //       <Button
-          
-    //         sx={{ width: "30px", height: "30px" }}
-    //         className="nav-btn"
-    //         onClick={() => {
-    //           var container = sliderRef.current;
-    //           container += scrollAmount;
-    //           window.scrollBy(container, 0);
-    //         }}
-    //       >
-    //         <NavigateNextIcon fontSize="large" />
-    //       </Button>
-    //     </Box>
-    //   </Box>
-    //   <Box
-    //     sx={{
-    //       display: "flex",
-    //       overflow: "scroll",
-    //       scrollBehavior: "smooth",
-    //       transition: "scroll 0.3s ease-in-out",
-    //     }}
-    //   >
+
     return (
-      <div className="grid grid-cols-4  gap-2 mt-10 ">
+      <div className="grid grid-cols-4 w-4/5  mt-10  ml-auto mr-auto">
         {data?.map((e,index) => {
           return (
-            <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+            <div key={index} className="w-56  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
             <a href="#">
               <div>
                 <img className="rounded-t-lg w-sm" src={e.images[0] &&  e.images[0].image} alt="" />
@@ -123,26 +56,22 @@ const AllProducts = () => {
     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
   </svg>
   <svg className="w-6 h-6 text-gray-800 dark:text-white relative ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
+    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
   </svg>
               </div>
             
             </a>
-            <div className="p-5">
+            <div >
                 <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{e.productName}</h5>
+                    <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{e.productName}</h5>
                 </a>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{e.description}</p>
                 
   
-                <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                     <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </a>
+
             </div>
-        </div>)})}
+        </div>)
+      })}
       </div>
     )
         

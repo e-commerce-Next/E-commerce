@@ -1,3 +1,12 @@
-export default function Home () {
-return <h1> welcome home</h1>
+import Link from "next/link";
+
+// import AllProducts from
+export default function Home() {
+  return (
+    <div>
+      <Link href={"/sorteproducts/Gaming"}>
+        <div>xxxxxxxxxxxs</div>
+      </Link>
+    </div>
+  );
 }
