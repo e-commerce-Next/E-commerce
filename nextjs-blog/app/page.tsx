@@ -1,11 +1,12 @@
-import FlashSales from './FlashSales/FlashSales'
-import AllProduct from './AllProduct/AllProduct'
-import AllProductHome from './AllProductHome/AllProductHome'
-export default function Home () {
+import Link from "next/link";
 
-return (
-    //  <FlashSales/>
-    <AllProduct/>
-    // <AllProductHome/>
-)
+// import AllProducts from
+export default function Home() {
+  return (
+    <div>
+      <Link href={"/sorteproducts/Gaming"}>
+        <div>xxxxxxxxxxxs</div>
+      </Link>
+    </div>
+  );
 }
