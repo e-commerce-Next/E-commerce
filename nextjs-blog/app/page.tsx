@@ -1,3 +1,10 @@
+import About from "./AboutUs/page"
+import Nav from "./Navbar/page"
 export default function Home () {
-return <h1> welcome home</h1>
+return (
+    <div>
+        <Nav/>
+        {/* <About/> */}
+    </div>
+)
 }

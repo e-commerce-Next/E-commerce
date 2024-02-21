@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize')
 require('mysql2')
 
 
-const connection = new Sequelize('refcom', 'root', 'efta7 yasemsem', {
+const connection = new Sequelize('ecommerce2', 'root', 'root', {
     host:'localhost',
     dialect:'mysql'
 })
