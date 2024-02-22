@@ -31,7 +31,7 @@ const Contact: FC = () => {
             <div className="absolute w-[800px] h-[457px] top-[100px] left-[504px] bg-primary rounded-[4px] overflow-hidden shadow-categogy-5">
               <div className="flex-col items-end gap-[32px] relative top-[40px] left-[31px]">
                 <div className=" items-start gap-[16px] relative flex-[0_0_auto]">
-                  <div className="relative w-[235px] h-[50px] bg-secondary rounded-[4px]">
+                  <div className="relative w-[235px] h-[50px] rounded-[4px]">
                     <p className="text-transparent absolute top-[12px] left-[16px] opacity-50 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
                       <span className="text-black font-title-16px-regular [font-style:var(--title-16px-regular-font-style)] font-[number:var(--title-16px-regular-font-weight)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] text-[length:var(--title-16px-regular-font-size)]">
                         <input type="text" placeholder="Your Name"
@@ -45,7 +45,7 @@ const Contact: FC = () => {
                       </span>
                     </p>
                   </div>
-                  <div className="relative w-[235px] h-[50px] bg-secondary rounded-[4px]">
+                  <div className="relative w-[235px] h-[50px]  rounded-[4px]">
                     <p className="text-transparent absolute top-[12px] left-[16px] opacity-50 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
                       <span className="text-black font-title-16px-regular [font-style:var(--title-16px-regular-font-style)] font-[number:var(--title-16px-regular-font-weight)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] text-[length:var(--title-16px-regular-font-size)]">
                         <input type="text" placeholder="Your Email"
@@ -59,7 +59,7 @@ const Contact: FC = () => {
                       </span>
                     </p>
                   </div>
-                  <div className="relative w-[235px] h-[50px] bg-secondary rounded-[4px]">
+                  <div className="relative w-[235px] h-[50px]  rounded-[4px]">
                     <p className="text-transparent absolute top-[12px] left-[16px] opacity-50 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
                       <span className="text-black font-title-16px-regular [font-style:var(--title-16px-regular-font-style)] font-[number:var(--title-16px-regular-font-weight)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] text-[length:var(--title-16px-regular-font-size)]">
                         <input type="text" placeholder="Phone Number"

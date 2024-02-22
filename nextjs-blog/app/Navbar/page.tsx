@@ -7,18 +7,21 @@ import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 
-const Nav: React.FC = () => {
  
+
+const Nav: React.FC = () => {
   
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router=useRouter()
 const navigate=(path:string)=>{
 router.push(path)
 }
   
-  
+
 
   return (
     <div className='w-full h-full' >
+     
       <nav>
         <div className='flex items-center justify-center gap-2 h-16 bg-black text-white'>
           <h3 className='text-sm md:text-base'>
@@ -32,7 +35,7 @@ router.push(path)
         <div className=' justify-center gap-8 mt-6 mb-6 ml-20 flex items-center '>
           <h1 className='absolute left-10 font-bold text-3xl mb-1 mr-36'>Exclusive 🛒</h1>
   
-          <Link href=''>Home</Link>
+          <Link href='../homePage'>Home</Link>
           <Link href="../Contact">Contact</Link>
           <Link href='../AboutUs'>AboutUs</Link>
           <Link href=''><p >Sign Up</p></Link>
@@ -47,13 +50,7 @@ router.push(path)
               className='cursor-pointer'
               />
             </div>
-
-
-
-
-
-
-          <div className="flex items-center gap-20 absolute right-14" >  
+          <div className="flex items-center gap-10 absolute right-14" >  
             <FaRegHeart 
             className='cursor-pointer'
             size={25}
@@ -61,12 +58,26 @@ router.push(path)
         
             <AiOutlineShoppingCart
               className='cursor-pointer'
-              size={25}
+              size={26}
               onClick={() => navigate('/app/Cart')}
             />
-            <CgProfile size={25}  />
-         
-            
+            <div className="relative">
+          <button
+            className="cursor-pointer focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {<CgProfile size={28}/>}
+          </button>
+
+          {isMenuOpen && (
+            <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+             
+                  <button onClick={() => navigate('/app/Profile')} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Profile</button>
+                  {/* <button onClick={logoutFunction} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Logout</button> */}
+             
+            </div>
+          )}
+        </div>
           </div>
         </div>
       </nav>
