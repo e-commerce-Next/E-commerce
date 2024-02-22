@@ -18,7 +18,7 @@ export default function AllFlashsale () {
     }, [])
 
     const AllPromoProduct = data.filter((oneData) => {
-        return oneData.promotion !== null
+        return oneData.promotion !== 0
     });
     console.log('filter', AllPromoProduct);
     console.log('data', data);

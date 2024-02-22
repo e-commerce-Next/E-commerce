@@ -3,12 +3,14 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { FiHeart } from "react-icons/fi";
+import NavBar from "../Navbar/page"
 
 import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
 
 export default function AllProduct() {
     const [data, setData] = useState([]);
+    console.log('product',data)
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 4;
 
@@ -59,31 +61,32 @@ export default function AllProduct() {
 
     return (
         <div>
+            <div><NavBar></NavBar></div>
             <div className="text-center p-10">
                 <div className="flex justify-center">
                     <div className="flex flex-col items-center mr-8">
                         <MdSportsBaseball className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Sports</span>
+                        
                     </div>  
                     <div className="flex flex-col items-center mr-8">
                         <MdHome className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Home & Garden</span>
+                        
                     </div>
                     <div className="flex flex-col items-center mr-8">
                         <RiComputerLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Computers</span>
+                       
                     </div>
                     <div className="flex flex-col items-center mr-8">
                         <RiBook3Line className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Books</span>
+                        
                     </div>
                     <div className="flex flex-col items-center mr-8">
                         <RiBriefcaseLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Office & Stationery</span>
+                        
                     </div>
                     <div className="flex flex-col items-center">
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Cameras</span>
+                        
                     </div>
                 </div>
             </div>
