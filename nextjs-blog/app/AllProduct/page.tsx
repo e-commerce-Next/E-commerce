@@ -101,7 +101,7 @@ export default function AllProduct() {
                 id="Projects"
                 className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
             >
-                {currentProducts.map((product, index) => (
+                {data.map((product, index) => (
                     <div key={index} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl" >
                    
                             <img src={product.images[0] && product.images[0].image} alt="Product" className="h-80 w-72 object-cover rounded-t-xl" onClick={()=>{navigate(`/Product/${product.idproducts}`)}} />

@@ -18,7 +18,7 @@ export default function RelatedProduct(props: { id: number }) {
                 const pId=props.id
                 console.log('testP',pId)
                 // Filter the product based on the given id
-                const oneProduct = data.find((e) => e.idproducts == pId);
+                const oneProduct = data.find((e) => e.idproducts == props.id);
                 console.log('Found product:', oneProduct)
                 if (oneProduct) {
                   console.log(props.id)

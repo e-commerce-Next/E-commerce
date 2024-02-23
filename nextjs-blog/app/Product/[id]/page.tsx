@@ -4,6 +4,7 @@ import ProductImages from "../ProductImages";
 import RelatedProduct from "../RelatedProduct";
 import NavBar from '../../Navbar/page'
 import Footer from "../../footer/page";
+import Zoom from "../Zoom";
 
 
 export default function Page(props:any) {
@@ -21,6 +22,7 @@ export default function Page(props:any) {
                 <RelatedProduct id={props.params.id} />
             </div>
             <Footer />
+           
         </div>
     )
 }
