@@ -7,6 +7,7 @@ const imageRoute = require('../routes/imageRoute')
 const blockRoute =require('../routes/blockRoute')
 const categoriesRoute=require('../routes/categoriesRoute')
 const authorRoute = require('../routes/authorRoute')
+const cartRoute = require ('../routes/cartRoute')
 const PORT = 8080
 const app = express()
 const favoritRoute = require('../routes/favoritRoute')
@@ -25,6 +26,7 @@ app.use('/token', authorRoute)
 // app.use("/product",productrouter)
 // app.use("/image",imagerouter)
 app.use('/favorit', favoritRoute)
+app.use('/cart', cartRoute)
 app.use('/block',blockRoute)
 
 app.listen(PORT, ()=>{

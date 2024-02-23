@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "../Navbar/page";
+import Footer from "../footer/page";
 // import Footer from "../Footer/page"
 
 export const About = () => {
@@ -39,6 +40,7 @@ export const About = () => {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
       {/* <Footer /> */}
     </>
