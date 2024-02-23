@@ -10,9 +10,13 @@ import SendIcon from '@mui/icons-material/Send';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import Divider from '@mui/material/Divider';
 import { redirect } from 'next/navigation'
-
+import { useRouter } from 'next/navigation';
 const   Footer = () => {
- 
+
+  const router=useRouter()
+  const navigate=(path:string)=>{
+  router.push(path)
+  }
   return (
     <div style={{  marginTop:"40px",
     paddingTop:'50px',
@@ -49,11 +53,11 @@ const   Footer = () => {
 
             <Stack spacing={2} direction='column' >           
             <Typography variant='h6' color='#f0f0f0'>Account</Typography>
-            <Button onClick={()=>{redirect("/myaccount")}} sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >My Account</Typography></Button>
-            <Button onClick={()=>{redirect("/login")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2'>Login / Register</Typography></Button>
-            <Button onClick={()=>{redirect("/cart")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Cart</Typography></Button>
-            <Button onClick={()=>{redirect("/wishlist")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Wishlist</Typography></Button>
-            <Button onClick={()=>{redirect("/shop")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Shop</Typography></Button>
+            <Button onClick={()=>{navigate("/myaccount")}} sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >My Account</Typography></Button>
+            <Button onClick={()=>{navigate("/login")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2'>Login / Register</Typography></Button>
+            <Button onClick={()=>{navigate("/cart")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Cart</Typography></Button>
+            <Button onClick={()=>{navigate("/wishlist")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Wishlist</Typography></Button>
+            <Button onClick={()=>{navigate("/shop")}}sx={{paddingTop:"1px"}}><Typography variant='subtitle2' color='#c2c2c2' >Shop</Typography></Button>
 
             </Stack>
             <Stack spacing={2} direction='column'>           
