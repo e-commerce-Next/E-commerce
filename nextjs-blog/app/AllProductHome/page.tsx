@@ -72,7 +72,6 @@ return(
                 <img
                   className="w-[191px] h-[101px]"
                   src={e.images[0] &&  e.images[0].image}
-                  alt="img"
                 />
               </div>
             </div>

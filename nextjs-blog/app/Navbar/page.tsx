@@ -8,9 +8,10 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import Shopp from './Shopp'
 
+
 const Nav: React.FC = () => {
  const [show,setShow]=useState(false)
- 
+ const [isMenuOpen, setIsMenuOpen] = useState(false);
  const ShowCom =() => {
   if(show == true ) {
     setShow(false)
@@ -23,10 +24,11 @@ const navigate=(path:string)=>{
 router.push(path)
 }
   
-  
+
 
   return (
     <div className='w-full h-full' >
+        
       <nav>
         <div className='flex items-center justify-center gap-2 h-14 bg-black text-white'>
           <h3 className='text-sm md:text-base'>
@@ -61,20 +63,32 @@ router.push(path)
               />
             </div>
 
-
-
-
-
-
-          <div className="flex items-center gap-20  right-14" >  
+          <div className="flex items-center gap-10 absolute right-14" >  
             <FaRegHeart 
             className='cursor-pointer'
             size={25}
-     
-        />
-      
-            <Shopp/>
-            <CgProfile size={25}  />
+            onClick={()=> navigate("/app/Wishlist")} />
+        
+            
+              <Shopp/> 
+            <div className="relative">
+          <button
+            className="cursor-pointer focus:outline-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {<CgProfile size={28}/>}
+          </button>
+
+          {isMenuOpen && (
+            <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+             
+                  <button onClick={() => navigate("/User")} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Profile</button>
+                  
+             
+            </div>
+          )}
+        </div>
+
           </div>
         </div>
       </nav>

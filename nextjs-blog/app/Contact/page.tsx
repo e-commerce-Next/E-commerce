@@ -42,7 +42,7 @@ const Contact: FC = () => {
                         />
                       </span>
                       <span className="text-[#db4444] font-title-16px-regular [font-style:var(--title-16px-regular-font-style)] font-[number:var(--title-16px-regular-font-weight)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] text-[length:var(--title-16px-regular-font-size)]">
-                        *
+                        
                       </span>
                     </p>
                   </div>

@@ -3,15 +3,24 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { FiHeart } from "react-icons/fi";
-
+import NavBar from "../Navbar/page"
+import Footer from "../footer/page";
 import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
+import { useRouter } from "next/navigation";
 
 export default function AllProduct() {
+    const router=useRouter()
+    const navigate=(path:string)=>{
+        router.push(path)
+        }
     const [data, setData] = useState([]);
+    console.log('product',data)
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 4;
 
+    
+   
     useEffect(() => {
         fetch('http://localhost:8080/product/getall')
             .then((res) => res.json())
@@ -78,6 +87,7 @@ const addtoCart=(obj)=>{
 
     return (
         <div>
+            <div><NavBar></NavBar></div>
             <div className="text-center p-10">
                 <div className="flex justify-center">
                     <div className="flex flex-col items-center mr-8">
@@ -110,12 +120,12 @@ const addtoCart=(obj)=>{
                 id="Projects"
                 className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
             >
-                {currentProducts.map((product, index) => (
-                    <div key={index} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                        <a href="#">
-                            <img src={product.images[0] && product.images[0].image} alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+                {data.map((product, index) => (
+                    <div key={index} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl" >
+                   
+                            <img src={product.images[0] && product.images[0].image} alt="Product" className="h-80 w-72 object-cover rounded-t-xl" onClick={()=>{navigate(`/Product/${product.idproducts}`)}} />
                             {helperTagPromotion(product)}
-                            <div className="px-4 py-3 w-72">
+                            <div className="px-4 py-3 w-72" >
                                 <span className="text-gray-400 mr-3 uppercase text-xs">{product.brand}</span>
                                 <p className="text-lg font-bold text-black truncate block capitalize">{product.productName}</p>
                                 <div className="flex items-center">
@@ -126,7 +136,7 @@ const addtoCart=(obj)=>{
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                  
                     </div> 
                 ))}
             </section>
@@ -144,6 +154,7 @@ const addtoCart=(obj)=>{
                     </button>
                 ))}
             </div>
+            <Footer/>
         </div>
     )
 }

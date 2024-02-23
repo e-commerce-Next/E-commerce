@@ -29,6 +29,21 @@ export default function sortedProducts(props) {
       });
   }, []);
 
+  
+const addtoCart=(obj)=>{
+    fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(obj)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+        })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
+
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -112,7 +127,7 @@ export default function sortedProducts(props) {
                 <img src={product.images[0] &&  product.images[0].image} alt="Product" className="h-72 w-72 object-cover rounded-t-xl" />
              
                         <div className="flex flex-justify-between">
-                            <button><LuShoppingCart className="text-black w-28  h-8" /></button>
+                            <button onClick={()=>{addtoCart({product:product,userIduser:7})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
                             <button><FiHeart className="text-black w-28  h-8" /></button>
                         </div>
                 <div className="px-4 py-3 w-72">
