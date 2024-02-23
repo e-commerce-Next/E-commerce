@@ -23,11 +23,29 @@ export default function AllFlashsale () {
     console.log('filter', AllPromoProduct);
     console.log('data', data);
 
+    const addtoCart=(obj)=>{
+      fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+         'Content-type': 'application/json'},
+          body:JSON.stringify(obj)
+       })
+       .then((response) => response.json())
+       .then((result)=>{
+       console.log(result,"added")
+          })
+        .catch((err)=>{
+         console.log(err);
+          })
+      }
+
+
+
+
+      
     return(
         <div
       style={{ display: "flex", marginTop: "10%", justifyContent: "center" }}
     >
-      <div className=" flex-col justify-center items-center  gap-10 inline-flex">
+      <div className=" flex-col justify-center items-center  gap-10 inline-flex"> 
         <div className="justify-center items-end gap-[470px] inline-flex">
           <div className="justify-start items-end gap-[87px] flex">
             <div className="h-[103px] flex-col justify-start items-start gap-6 inline-flex">
@@ -36,7 +54,7 @@ export default function AllFlashsale () {
                   <div className="w-5 h-10 bg-red-500 rounded"></div>
                 </div>
                 <div className="text-red-500 text-base font-semibold font-['Poppins'] leading-tight">
-                  Today’s
+                  Today's
                 </div>
               </div>
               <div className="text-black text-4xl font-semibold font-['Inter'] leading-[48px] tracking-wider">
@@ -64,7 +82,7 @@ export default function AllFlashsale () {
             // eslint-disable-next-line react/jsx-key
             return (
               // eslint-disable-next-line react/jsx-key
-              <div className="flex-col justify-start items-start gap-4 inline-flex">
+              <div key={i} className="flex-col justify-start items-start gap-4 inline-flex">
                 <div className="w-[270px] h-[250px] relative bg-neutral-100 rounded">
                   <div className="px-3 py-1 left-[12px] top-[12px] absolute bg-red-500 rounded justify-center items-center gap-2.5 inline-flex">
                     <div className="text-neutral-50 text-xs font-normal font-['Poppins'] leading-[18px]">
@@ -72,15 +90,16 @@ export default function AllFlashsale () {
                     </div>
                   </div>
                   <div className="w-[270px] h-[41px] left-0 top-[209px] absolute bg-black rounded-bl rounded-br"></div>
-                  <div className="left-[87px] top-[217px] absolute text-white text-base font-medium font-['Poppins'] leading-normal">
-                    Add To Cart
+                  <div className="left-[87px] top-[217px] absolute text-white text-base font-medium font-['Poppins'] leading-normal cursor-pointer" 
+                  onClick={()=>{addtoCart({product:e,userIduser:7})}}>
+                    Add To Cart 
                   </div>
                   <div className="left-[224px] top-[12px] absolute flex-col justify-start items-start gap-2 inline-flex">
                     <div className="w-[34px] h-[34px] relative">
                       <div className="w-[34px] h-[34px]  bg-white rounded-full flex justify-center items-center"
                       >
-                        <button>
-                          <FiHeart className= "text-black w-28  h-8" />
+                        <button >
+                          <FiHeart className= "text-black w-28 h-8" />
                         </button>
                       </div>
                       <div className="w-6 h-6 px-1 py-[5px] left-[5px] top-[5px] absolute justify-center items-center inline-flex"></div>

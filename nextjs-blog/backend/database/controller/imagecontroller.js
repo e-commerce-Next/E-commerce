@@ -5,7 +5,7 @@ const saveImages = (req, res) => {
     const images = req.body.image
     try{
         images.map( e=>{
-            addImage({productIdproducts: id, image: e.uploadInfo.secure_url})
+            addImage(req.body)
         })
         res.status(201).json('images added')
     }
