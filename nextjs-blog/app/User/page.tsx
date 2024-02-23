@@ -1,35 +1,65 @@
-import React,{useState} from 'react'
+"use client"
+import React,{useState, ChangeEvent} from 'react'
 import '../ui/global.css'
-
 import Nav from '../Navbar/page'
+import axios from 'axios'
+
+interface User {
+  iduser: number;
+}
 
 const UpdateUserProfil = () => {
-// const [firstName, setfirstName] = useState('');
-// const [lastName, setLastName] = useState('');
-// const [email, setEmail] = useState('');
-// const [oldPassWord, setOldPassWord] = useState('user.password');
-// const [password, setPassWord] = useState('');
-// const [passWordr, setPasswordr] = useState('');
+  
+  const [name, setName] = useState<string>('');
+  const [lastname, setLastName] = useState<string>('');
+  const [image, setImage] = useState<File | null>(null);
+  const [email, setEmail] = useState<string>('');
+  const [newPass, setNewpass] = useState<string>('');
+  const [iduser, setid] = useState<User | null>(null);
+  const [address, setAddress] = useState<string>('');
 
+  
 
-// const id = Cookies.get("id")
-// console.log(id,"userid")
-// const updateProfile=(userId,data)=>{
-//   axios.put(`http://localhost:3000/user/update/${userId}`,data)
-//   .then((res)=>{
-//     if(oldPassWord===user.password && password===passWordr) {
-//       console.log("success")
-//     }
-//   } 
-//   )
-//   .catch((error)=>{console.log("error")})
-// }
+  const updateprofile = () => {
+    axios
+      .put(
+        `http://localhost:8080/user/edit/1`, 
+        {
+          firstName: name,
+          lastName: lastname,
+          emailPhone: email,
+          image: image,
+          password: newPass,
+          adresse: address
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  
+
+  const handelchange = () => {
+    updateprofile();
+  };
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
 
 
   return (
     
     <div>
-     <Nav/>
+      
+      <Nav/>
       <div style={{"display":"flex","justifyContent":"space-around","marginTop":"2.5rem"}}>
         <div style={{"display":"flex"}}>
         <a href="/home/My Account">Home /</a>
@@ -66,30 +96,25 @@ const UpdateUserProfil = () => {
   <div className="grid md:grid-cols-2 md:gap-10">
 
     <div className="relative z-0 w-96 mb-5 group">
-        <input type="text" name="floating_first_name" id="floating_first_name" className="block py-2.5 px-0 w-52 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <input type="text" name="floating_first_name" id="floating_first_name" className="block py-2.5 px-0 w-52 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required onChange={(e)=>{setName(e.target.value)}}/>
         <label  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
     </div>
     
     <div className="relative z-0 w-96 mb-5 group">
-        <input type="text" name="floating_last_name" id="floating_last_name" className="block py-2.5 px-0 w-52 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <input type="text" name="floating_last_name" id="floating_last_name" className="block py-2.5 px-0 w-52 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required onChange={(e)=>{setLastName(e.target.value)}}/>
 
         <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
     </div>
   </div>
   <div className="grid md:grid-cols-2 md:gap-10">
   <div className="relative z-0 w-96 mb-5 group">
-      <input type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-[450px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-[450px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required onChange={(e)=>{setEmail(e.target.value)}}/>
       <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
   </div>
   </div>
-
-  <div className="relative z-0 w-96 mb-5 group">
-      <input type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-[450px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-      <label  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Current password</label>
-  </div>
   
   <div className="relative z-0 w-96 mb-5 group">
-      <input type="password" name="password" className="block py-2.5 px-0 w-[450px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  defaultValue={"hello"}/>
+      <input type="password" name="password" className="block py-2.5 px-0 w-[450px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  defaultValue={"hello"} onChange={(e)=>{setNewpass(e.target.value)}}/>
       <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">New password</label>
   </div>
   
@@ -111,7 +136,7 @@ const UpdateUserProfil = () => {
 </form>
      </section>
             </div>
-            
+
     
     </div>
   )
