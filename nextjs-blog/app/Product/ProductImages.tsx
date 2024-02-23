@@ -1,11 +1,11 @@
 "use client"
 import React, { useState, useEffect } from "react";
 
-export default function ProductImages (){
+export default function ProductImages (props:any){
     const [images, setImages] = useState([]);
     console.log('hi',images)
     useEffect(() => {
-        fetch('http://localhost:8080/image/getAll/3')
+        fetch(`http://localhost:8080/image/getAll/${props.id}`)
             .then((res) => res.json())
             .then((data) => setImages(data));
     }, [])

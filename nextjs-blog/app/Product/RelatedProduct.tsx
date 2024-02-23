@@ -1,31 +1,38 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 
-export default function RelatedProduct() {
-    const id = 3;
+export default function RelatedProduct(props: { id: number }) {
+    const id = props.id;
+    console.log('ameni',id)
     const [products, setProducts] = useState([]);
     const [relatedProducts, setRelatedProducts] = useState([]);
     console.log('hiiii1',relatedProducts)
 
     useEffect(() => {
+      
         fetch('http://localhost:8080/product/getall')
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
-
+                
+                const pId=props.id
+                console.log('testP',pId)
                 // Filter the product based on the given id
-                const oneProduct = data.find((e) => e.idproducts === id);
+                const oneProduct = data.find((e) => e.idproducts == pId);
+                console.log('Found product:', oneProduct)
                 if (oneProduct) {
+                  console.log(props.id)
                     const category = oneProduct.categories[0]?.categoryname;
                     console.log('Category:', category);
                     
+                    
                     // Filter related products based on the category
                     const filteredProducts = data.filter((e) => (
-                        e.categories.length > 0 && e.categories[0].categoryname === category
+                        e.idproducts != id && e.categories.length > 0 && e.categories[0].categoryname === category
                     ));
                     setRelatedProducts(filteredProducts);
                     console.log('hiiii2',relatedProducts)
-                    
+                    console.log('ttt',props.id)
                 }
             })
             .catch((err) => {
@@ -67,7 +74,7 @@ export default function RelatedProduct() {
                     </div>
                     <div className="justify-start items-start gap-2 inline-flex">
                       <div className="justify-start items-start flex" />
-                      <div className="w-20 h-5 opacity-50 text-black text-sm font-semibold font-['Poppins'] leading-tight"><h1 className='flex'>Review ({e.ratingp})</h1></div>
+                      
                     </div>
                   </div>
                 </div>

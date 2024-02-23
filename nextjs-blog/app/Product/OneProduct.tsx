@@ -3,16 +3,20 @@ import React, { useEffect, useState } from "react";
 import "boxicons";
 import { FiHeart } from "react-icons/fi";
 
-export default function OneProduct() {
+
+
+export default function OneProduct(props:any) {
+   
+    
     const [product, setProdduct] = useState([])
     const [count, setCount] = useState(1);
     const [size, setSize] = useState(product['size']);
-    
-    const [wish, setWish] = useState(false);
-
    
+    console.log('props1',props.id)
+
+
     useEffect(() => {
-        fetch('http://localhost:8080/product/Oneproduct/3')
+        fetch(`http://localhost:8080/product/Oneproduct/${props.id}`)
             .then((res) => res.json())
             .then((data) => setProdduct(data[0]));
     }, [])
@@ -167,7 +171,7 @@ export default function OneProduct() {
                         </div>
                     </div>
                     <button>
-                        <FiHeart className={wish ? "text-red-500 w-28  h-8" : "text-black w-28  h-8"} />
+                        <FiHeart className={ "text-black w-28  h-8"} />
                     </button>
                 </div>
             </div>
