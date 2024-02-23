@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "../Navbar/page";
 import Footer from "../footer/page";
-// import Footer from "../Footer/page"
 
 export const About = () => {
   return (
@@ -42,7 +41,7 @@ export const About = () => {
         </div>
         <Footer/>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
