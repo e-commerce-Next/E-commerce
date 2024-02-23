@@ -58,7 +58,7 @@ ChartJS.register(
 
     const fetchData = async () => {
         try {
-          const response = await fetch("http://localhost:3000/api/products/allProducts");
+          const response = await fetch("http://localhost:8080/product/getall");
           const tempData = await response.json();
           setProducts(tempData)
           makeMyChart(tempData)
@@ -66,8 +66,7 @@ ChartJS.register(
           console.error(error);
         }
       };
-   
-// function to select only the names and prices of products //
+
   const makeMyChart =(products :any) :void => { 
     let names=[]
     let price =[]
@@ -91,7 +90,7 @@ useEffect(() => {
   fetchData()
 },[])
 
-// Chart Prices of Products //
+
 const data = {
   labels: prodNames,
   datasets: [{
