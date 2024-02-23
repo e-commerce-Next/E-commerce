@@ -1,73 +1,104 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import Link from "next/link";
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
-// import { IoSearchOutline } from 'react-icons/io5'
-// import DeleteIcon from "@mui/icons-material/Delete";
+import { IoSearchOutline } from 'react-icons/io5'
+import DeleteIcon from "@mui/icons-material/Delete";
 
-// interface Seller {
-//   UserID: number;
-//   FirstName: string;
-//   LastName: string;
-//   Email: string;
-// }
+interface Seller {
+    iduser: number;
+    firstName: string;
+    lastName: string;
+    emailPhone: string;
+    adresse: string;
+}
 
-// // const Sellers = () => {
-// //   const [sels, setSels] = useState<Seller[]>([]);
-// //   const [refresh, setRefresh] = useState<boolean>(false);
+const Sellers = () => {
+  const [sells, setSells] = useState<Seller[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
-// //   const fetchData = async () => {
-// //     try {
-// //       const res = await fetch("http://localhost:3000/api/users/sellers");
-// //       const data = await res.json();
-// //       setSels(data);
-// //     } catch (err) {
-// //       console.error(err);
-// //     }
-// //   };
+  const fetchData = async () => {
+    try {
+      const res = await fetch("http://localhost:8080/user/getsellers");
+      const data = await res.json();
+      setSells(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-// //   useEffect(() => {
-// //     fetchData();
-// //   }, [refresh]);
+  useEffect(() => {
+    fetchData();
+  }, [refresh]);
 
-// //   const deleteSeller = async (userId: number) => {
-// //     try {
-// //       await fetch(`http://localhost:3000/api/users/deleteUser/${userId}`, {
-// //         method: "DELETE",
-// //       });
-// //       setRefresh(!refresh);
-// //     } catch (err) {
-// //       console.error(err);
-// //     }
-// //   };
+  const deleteSeller = async (userId: number) => {
+    try {
+      await fetch(`http://localhost:8080/user/delete/${userId}`, {
+        method: "DELETE",
+      });
+      setRefresh(!refresh);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-//   return (
-//     <div>
-//       <div>
-//         <div className="grid grid-cols-3 mx-44 justify-center my-40 bg-white gap-40 items-center text-center rounded-s align-middle">
-//           {sels.map((el) => (
-//             <div
-//               key={el.UserID}
-//               className="flex-wrap mb-6 hover:box-content -mt-28 mr-60 shadow-2xl border-black border rounded w-60"
-//             >
-//               <h1 className="font-bold">{el.FirstName}</h1>
-//               <h1>{el.LastName}</h1>
-//               <h1>{el.Email}</h1>
-//               <button className="bg-red text-white rounded w-40 h-9 my-5">
-//                 {" "}
-//                 Send an email{" "}
-//               </button>
-//               <br />
-//               <DeleteIcon onClick={() => deleteSeller(el.UserID)} />
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//       <div>
-       
-//       </div>
-//     </div>
-//   );
-// };
+  return (
+    <div>
+<div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-10 w-4/5 ml-auto mr-auto">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    User id
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    User Full Name
+                </th>
+                
+                <th scope="col" className="px-6 py-3">
+                E-mail address or phone number 
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Address
+                </th>
+                <th scope="col" className="px-6 py-3">
+                   Actions
+                </th>
+            </tr>
+        </thead>
 
-// export default Sellers;
+
+
+
+        <tbody>
+        {sells.map((user,index)=>{
+                return (
+                    <tr  key={index}className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            
+            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+               {user.iduser}
+            </th>
+            <td className="px-6 py-4">
+               {user.firstName} {user.lastName} 
+            </td>
+            <td className="px-6 py-4">
+               {user.emailPhone}
+            </td>
+            <td className="px-6 py-4">
+               {user.adresse}
+            </td>
+            <td className="px-6 py-4 cursor-pointer">
+            <DeleteIcon onClick={() => deleteSeller(user.iduser)}/>
+            </td>
+        </tr>
+            )
+          }  
+        )}
+        </tbody>
+    </table>
+</div>
+</div>
+  )
+};
+
+export default Sellers;

@@ -64,7 +64,7 @@ const AdminCat = () => {
   return (
     <div>
       <div>
-        <div className="flex justify-center align-middle bg-black text-white h-20 gap-40 mb-6 items-center">
+        <div className="flex justify-center align-middle text-white h-20 gap-40 items-center border-spacing-20 bg-teal-950" >
           <Link href="/Admin/Categories/AddCategory">Add New Category</Link>
           <Link href="/Admin">Get Back to Administration</Link>
           <div>
@@ -84,11 +84,7 @@ const AdminCat = () => {
               key={el.CategoryID}
               className="flex-wrap grid-cols-5 mb-6 hover:box-content"
             >
-              <img
-                className="h-40 w-30 shadow-lg rounded-3xl"
-                src={el.CategoryImage}
-                alt=""
-              />
+             
               <h1 className="text-">{el.NameCategory}</h1>
               <button
                 className="bg-white hover:bg-red text-black rounded w-20 h-9 my-5"

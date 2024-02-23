@@ -6,6 +6,7 @@
 // import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 
+
 // const AddCateg = () => {
 //   const [image, setImage] = useState<File | null>(null);
 //   const [url, setUrl] = useState<string>('');
@@ -15,14 +16,14 @@
   
 //   const router = useRouter();
 
-//   const addCat = async (newCat: { NameCategory: string; CategoryImage: string }) => {
+//   const addCat = async (Category: { categoryname: string, CategoryImage:string}) => {
 //     try {
-//       await fetch('http://localhost:3000/api/categories/addCategory', {
+//       await fetch('http://localhost:8080/categories/addcategorie', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
 //         },
-//         body: JSON.stringify(newCat),
+//         body: JSON.stringify(Category),
 //       });
       
 //     } catch (err) {
@@ -35,9 +36,9 @@
 //       const data = new FormData();
 //       if (image) {
 //         data.append('file', image);
-//         data.append('upload_preset', 'project');
-//         data.append('cloud_name', 'ds3tmq5iw');
-//         const response = await fetch('https://api.cloudinary.com/v1_1/ds3tmq5iw/image/upload', {
+//         data.append('upload_preset', 'ml_default');
+//         data.append('cloud_name', 'dwn1x1okc');
+//         const response = await fetch('https://api.cloudinary.com/v1_1/ml_default/image/upload', {
 //           method: 'POST',
 //           body: data,
 //         });
@@ -79,7 +80,7 @@
 //             <AddAPhotoIcon sx={{ width: 40, height: 40 }} /> <br />{' '}
 //           </Button>
 //           <div>
-//             <img className='h-auto max-w-lg rounded-lg cursor-pointer drop-shadow-2xl' src={url} />
+//             <img className='h-auto max-w-lg rounded-lg cursor-pointer drop-shadow-2xl' src={url} alt='pho'/>
 //           </div>
 //         </div>
 //         <h1 className='text-xl font-bold text-red mt-7'>Confirm :</h1>
@@ -88,7 +89,7 @@
 //           <button
 //             className='bg-black mt-5 h-11 w-52 text-white mb-10 shadow-md rounded'
 //             onClick={() => {
-//               addCat({ NameCategory: catName, CategoryImage: url }); 
+//               addCat({ categoryname: catName, CategoryImage: url }); 
 //               router.push("../../Categories")
 //             }}
 //           >

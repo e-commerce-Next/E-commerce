@@ -20,7 +20,7 @@ router.push(path)
 
 
   return (
-    <div className='w-full h-full' >
+    <div className='w-full h-full'  >
      
       <nav>
         <div className='flex items-center justify-center gap-2 h-16 bg-black text-white'>

@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import { IoSearchOutline } from "react-icons/io5";
 export default function AdminLayout({
     children,
   }: {
@@ -16,10 +17,11 @@ export default function AdminLayout({
         <Link href='../AdminDashboard/Sellers'>Sellers</Link>
         <Link href='../AdminDashboard/Categories'>Categories</Link>
         <Link href="../AdminDashboard/Products">Products</Link>
-        <div>
+        <div className="flex">
         <input type="search"
             placeholder='What are you looking for?'
-            className='bg-gray-200 p-2 text-xs rounded w-56 h-9 right-36'/>
+            className=' text-zinc-950 p-2 text-xs rounded w-56 h-9 right-36'/>
+            <IoSearchOutline size={35} />
         </div>
         </div>
        </nav>

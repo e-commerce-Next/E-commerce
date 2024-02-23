@@ -56,16 +56,16 @@ ChartJS.register(
 
 
 
-    // const fetchData = async () => {
-    //     try {
-    //       const response = await fetch("http://localhost:3000/api/products/allProducts");
-    //       const tempData = await response.json();
-    //       setProducts(tempData)
-    //       makeMyChart(tempData)
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   };
+    const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/api/products/allProducts");
+          const tempData = await response.json();
+          setProducts(tempData)
+          makeMyChart(tempData)
+        } catch (error) {
+          console.error(error);
+        }
+      };
    
 // function to select only the names and prices of products //
   const makeMyChart =(products :any) :void => { 
@@ -87,9 +87,9 @@ setProdAvail(availability)
 }
    
   
-// useEffect(() => {
-//   fetchData()
-// },[])
+useEffect(() => {
+  fetchData()
+},[])
 
 // Chart Prices of Products //
 const data = {
