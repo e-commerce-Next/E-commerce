@@ -20,7 +20,7 @@ router.push(path)
 
 
   return (
-    <div className='w-full h-full'  >
+    <div className='w-full h-full' >
      
       <nav>
         <div className='flex items-center justify-center gap-2 h-16 bg-black text-white'>
@@ -72,8 +72,8 @@ router.push(path)
           {isMenuOpen && (
             <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
              
-                  <button onClick={() => navigate('/app/Profile')} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Profile</button>
-                  {/* <button onClick={logoutFunction} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Logout</button> */}
+                  <button onClick={() => navigate("/User")} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Profile</button>
+                  
              
             </div>
           )}
