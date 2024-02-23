@@ -19,7 +19,7 @@ const   Footer = () => {
     paddingLeft:"150px",
     marginLeft:"-10px",
     bottom: "0",
-    width: '100%',
+    width: '1913px',
     height: '350px', 
     textAlign: 'center',
     backgroundColor: '#000', 

@@ -20,6 +20,8 @@ const addNewCategorie =async (req,res) => {
     }
 }
 
+
+
 const deleteCategorie =async(req,res)=>{
     const x= await delCategorie(req.params.id)
     try{
