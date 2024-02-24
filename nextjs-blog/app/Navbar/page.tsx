@@ -6,6 +6,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
+import Seller from '../Seller/[id]'
 import Shopp from './Shopp'
 
 
