@@ -1,5 +1,5 @@
 import Categories from './categories'
-import SlideCategories from './slidecarouss.jsx'
+import SlideCategories from './slidecarouss'
 import Nav from '../Navbar/page'
 import Footer from '../footer/page'
 import NewArrivals from '../Newarrival/page'
@@ -10,13 +10,13 @@ import CategoriesJBL from '../Video/page'
 
 export default function Homepage () {
     return <div>
-        <Nav/>
+        {/* <Nav/> */}
         <SlideCategories/>
         <Categories/>
-        <AllFlashsale/>
+        {/* <AllFlashsale/>
         <CategoriesJBL/>
         <NewArrivals/>
         <Services/>
-        <Footer/>
+        <Footer/> */}
     </div>
 }

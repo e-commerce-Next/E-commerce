@@ -29,7 +29,7 @@
     "**/*.tsx",
     "app/index.js",
     ".next/types/**/*.ts"
-, "app/homePage/Slidecarouss.jsx"  ],
+, "app/HomePage/Slidecarouss.jsx"  ],
   "exclude": [
     "node_modules"
   ]

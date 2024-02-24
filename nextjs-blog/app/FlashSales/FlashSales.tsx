@@ -31,6 +31,7 @@ export default function AllFlashsale () {
        .then((response) => response.json())
        .then((result)=>{
        console.log(result,"added")
+       
           })
         .catch((err)=>{
          console.log(err);

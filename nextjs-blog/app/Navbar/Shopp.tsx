@@ -9,7 +9,26 @@ export default function ShoppingCart() {
   const [open, setOpen] = useState(false)
   const [carts, setCarts] = useState([]);
   const [refresh,setRefresh]=useState<boolean>(false)
-  const [quantity,setQuantity]=useState('')
+  const [quantity,setQuantity]=useState<number>(1)
+   const [productQuantity, setProductQuantity] = useState<number>(1);
+
+const incrementQuantity = (id) => {
+    setQuantity(quantity => quantity+ 1);
+};
+
+const decrementQuantity = (id) => {
+    if (quantity > 1) {
+        setQuantity(quantity => quantity - 1);
+    }
+};
+
+
+const calculateSubtotal = (quantity:number, price:number) => {
+  return quantity * price;
+};
+
+
+  
 
   useEffect(()=>{
     const id = 7
@@ -24,6 +43,7 @@ export default function ShoppingCart() {
         console.log(err);
     })
 }, [refresh])
+
 
 
 const deleteProdFromCart = async (idcart)=>{
@@ -41,12 +61,13 @@ const deleteProdFromCart = async (idcart)=>{
 
   return (
     <>
+    
     <AiOutlineShoppingCart
               className='cursor-pointer'
               size={25}
               onClick={()=>{setOpen(true)}}
             /> 
-   {/* <button > p</button> */}
+
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
@@ -110,12 +131,30 @@ const deleteProdFromCart = async (idcart)=>{
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       
                                         <h4>{cart.product.productName}</h4>
-                                       <input className='h-4 w-12' type="number" placeholder='setQuanity '/>
+                                        <div>
+
+                                        <div className="bg-white border border-gray-200 w-[90px] rounded-lg dark:bg-slate-900 dark:border-gray-700">
+                        <div className="w-full flex justify-between items-center gap-x-1">
+                            <div className="grow py-2 px-3">  
+                                <input className="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 dark:text-white" type="text"  value={quantity}    onChange={(e)=>{setProductQuantity(e.target.value)}}/>
+                            </div>
+                            <div className="flex flex-col -gap-y-px divide-y divide-gray-200 border-s border-gray-200 dark:divide-gray-700 dark:border-gray-700">
+                                <button type="button" onClick={()=>{decrementQuantity(cart.idcart)}} className="size-7 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-se-lg bg-gray-50 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                    -
+                                </button>
+                                <button type="button" onClick={()=>{incrementQuantity(cart.idcart)}} className="size-7 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-lg bg-gray-50 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                                        </div>
                                         {/* <p>product.product &&  product.product.n</p> */}
                                       
-                                      <p className="ml-4">{cart.product.price}</p>
+                                      {/* <p className="ml-4">{cart.product.price*productQuantity}</p> */}
+                                      <p className="ml-4">{calculateSubtotal(cart.product.price,productQuantity)}</p>
                                     </div>
-                                     <p className="mt-1 text-sm text-gray-500">{cart.product.color}</p>
+                                    
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">{cart.product.description}</p> 
@@ -141,7 +180,7 @@ const deleteProdFromCart = async (idcart)=>{
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>{carts.reduce((total, cart) => total + calculateSubtotal(cart.product.price,productQuantity),0)}$</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">

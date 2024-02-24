@@ -8,10 +8,23 @@ import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'reac
 import { LiaGamepadSolid } from "react-icons/lia";
 import Link from "next/link";
 import Nav from "../../Navbar/page";
+import { useRouter } from 'next/navigation';
+
+
+
+
 export default function sortedProducts(props) {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 4;
+
+
+  const router=useRouter()
+  const navigate=(path:string)=>{
+  router.push(path)
+  }
+
+
 
   useEffect(() => {
     fetch("http://localhost:8080/product/getall")
@@ -90,25 +103,25 @@ const addtoCart=(obj)=>{
         <div className="text-center p-10" >
     
                 <div className="flex justify-center">
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer" onClick={() => navigate("/sorteproducts/Sports")}>
                         <MdSportsBaseball className="text-gray-500 w-28 h-8" />
-                         <Link href="/sorteproducts/Sports"><span className="block text-center no-underline text-black-500">Sports</span> </Link>
+                       <span className="block text-center  text-black-500">Sports</span>
                     </div>
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Phones")}>
                         <IoPhonePortraitSharp className="text-gray-500 w-28 h-8" />
-                          <Link  href="/sorteproducts/Phones">     <span className="block text-center no-underline">Phones</span> </Link>
+                           <span className="block text-center ">Phones</span> 
                     </div>
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Gaming")}>
                         <LiaGamepadSolid className="text-gray-500 w-28 h-8" />
-                          <Link href="/sorteproducts/Gaming">     <span className="block text-center">Gaming</span> </Link>
+                          <span className="block text-center">Gaming</span> 
                     </div>
                  
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Computers")}>
                         <RiComputerLine className="text-gray-500 w-28 h-8" />
-                      <Link href="/sorteproducts/Computers">     <span className="block text-center">Computers</span> </Link>
+                       <span className="block text-center">Computers</span>
                     </div>
             
-                    <div className="flex flex-col items-center  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                    <div className="flex flex-col items-center  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer" onClick={() => navigate("/sorteproducts/Cameras")}>
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
                         <span className="block text-center">Cameras</span>
                     </div>
@@ -126,7 +139,7 @@ const addtoCart=(obj)=>{
             <a>
                 <img src={product.images[0] &&  product.images[0].image} alt="Product" className="h-72 w-72 object-cover rounded-t-xl" />
              
-                        <div className="flex flex-justify-between">
+                        <div className="flex justify-between">
                             <button onClick={()=>{addtoCart({product:product,userIduser:7})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
                             <button><FiHeart className="text-black w-28  h-8" /></button>
                         </div>
@@ -135,7 +148,7 @@ const addtoCart=(obj)=>{
                     <span className="text-gray-400 mr-3 uppercase text-xs">{product.categories[0].categoryname}</span>
                     <p className="text-lg font-bold text-black truncate block capitalize text-left">{product.productName}</p> <br />
                     <span className="text-gray-400 mr-3 uppercase text-sm">{product.description}</span>
-                    {/* <p className="text-lg font-bold text-black truncate block ">{product.description}</p> */}
+                   
                     <div className="flex items-center">
                       
                     </div>
