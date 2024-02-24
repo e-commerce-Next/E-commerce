@@ -18,8 +18,8 @@ const CategoriesJBL = () => {
       sx={{
         backgroundColor: "white",
         marginTop: "100px",
-        width: "300%",
-        height: "450px",
+        width: "200%",
+        height: "500px",
         zIndex: -1,
         display: "flex",
         justifyContent: "center",
