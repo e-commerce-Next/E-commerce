@@ -13,17 +13,18 @@ import AllProductHome from "./AllProductHome/AllProductHome"
 export default function Home () {
 return (
     <div>
-        <Nav/>
+        {/* <Nav/>
         {/* <AllProducts/> */}
-        <SellerProfil/>
+        {/* <SellerProfil/>
         
-        <Footer/>
+        <Footer/>  */}
         
         {/* <Nav/>
         <FlashSales/> 
-        <AllProductHome/> */}
-         {/* <Footer/> */}
-        <AllProduct/>
+        <AllProductHome/> 
+          <Footer/>
+         */}
+         <AllProduct/>
        {/* <Page/> */}
     </div>
 )
