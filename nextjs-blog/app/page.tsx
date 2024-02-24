@@ -19,12 +19,12 @@ return (
         
         <Footer/>  */}
         
-        {/* <Nav/>
+        <Nav/>
         <FlashSales/> 
         <AllProductHome/> 
           <Footer/>
-         */}
-         <AllProduct/>
+        
+         {/* <AllProduct/> */}
        {/* <Page/> */}
     </div>
 )
