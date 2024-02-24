@@ -5,14 +5,34 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { FaEye } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { CiStar } from "react-icons/ci";
+import { Button } from "@mui/joy";
 export default function AllProduct() {
+
+  const like=(day)=>{
+    fetch(`http://localhost:8080/favorit/like`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(day)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+        })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
+   
+
     const [data, setData] = useState([])
+
     useEffect(() => {
         fetch('http://localhost:8080/product/getall')
             .then((res) => res.json())
             .then((data) => setData(data));
 
     }, [])
+
+   
 return(
     <div style={{ display: "flex", marginTop: "5%", justifyContent: "center" }}>
 
@@ -50,9 +70,9 @@ return(
               </div>
               <div className="left-[224px] top-[12px] absolute flex-col justify-start items-start gap-2 inline-flex">
                 <div className="w-[34px] h-[34px] relative">
-                  <div className="w-[34px] h-[34px]  bg-white rounded-full flex justify-center items-center">
+                  <div className="w-[34px] h-[34px]  bg-white rounded-full flex justify-center items-center"onClick={()=>{like({product:e, userIduser:localStorage.getItem("id")})}} >
                     <IconContext.Provider value={{ size: "1.5em" }}>
-                      <IoMdHeartEmpty />
+                    <IoMdHeartEmpty  />
                     </IconContext.Provider>
                   </div>
                   <div className="w-6 h-6 px-1 py-[5px] left-[5px] top-[5px] absolute justify-center items-center inline-flex"></div>
@@ -60,7 +80,7 @@ return(
                 <div className="w-[34px] h-[34px] relative">
                   <div className="w-[34px] h-[34px]  bg-white rounded-full flex justify-center items-center">
                     <IconContext.Provider value={{ size: "1.5em" }}>
-                      <FaEye />
+                     <button> <FaEye /></button> 
                     </IconContext.Provider>
                   </div>
                   <div className="w-6 h-6 px-[2.39px] py-[5px] left-[5px] top-[5px] absolute justify-center items-center inline-flex">

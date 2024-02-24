@@ -5,7 +5,6 @@ import Typography from "@mui/joy/Typography";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/joy/Button";
-// import Video from 'next-video';
 
 const CategoriesJBL = () => {
   

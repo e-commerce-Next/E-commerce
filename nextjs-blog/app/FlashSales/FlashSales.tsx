@@ -1,6 +1,5 @@
 "use client"
 import * as React from "react";
-
 import {  useState, useEffect } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaEye } from "react-icons/fa";

@@ -1,12 +1,13 @@
 "use client"
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter} from 'next/navigation';
 // import Link from 'next/link';
 import { IoSearchOutline } from 'react-icons/io5';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import Shopp from './Shopp'
+
 
 
 const Nav: React.FC = () => {
@@ -63,11 +64,11 @@ router.push(path)
               />
             </div>
 
-          <div className="flex items-center gap-10 absolute right-14" >  
+          <div className="flex items-center gap-20 absolute right-14" >  
             <FaRegHeart 
             className='cursor-pointer'
             size={25}
-            onClick={()=> navigate("/app/Wishlist")} />
+            onClick={()=> navigate("/Wishlist")} />
         
             
               <Shopp/> 
