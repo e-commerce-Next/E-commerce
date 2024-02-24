@@ -75,7 +75,7 @@ const NewArrivals = () => {
           }}
         >
           <Box display={"contents"}>
-            <img style={{marginLeft:"-100px"}}
+            <img style={{marginLeft:"-40px",marginTop:"50px"}}
               src="https://res.cloudinary.com/hzxyensd5/image/upload/v1708167914/rohxwwty7eeasaiwazxn.png"
               alt="PS5"
               width={"750px"}

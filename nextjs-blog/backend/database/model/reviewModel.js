@@ -13,4 +13,13 @@ const Reviews = sequelize.define('reviews', {
   timestamps: false
 })
 
-module.exports = {Reviews}
+const addreview=(data,id)=>{
+  return Reviews.update(data,{where: {userIduser:id},where:{productIdproducts:id}})
+}
+
+const getreviews = (id) => {
+  return Reviews.findAll({where: {userIduser:id},where:{productIdproducts:id}})
+}
+module.exports = {Reviews,getreviews,addreview}
+
+
