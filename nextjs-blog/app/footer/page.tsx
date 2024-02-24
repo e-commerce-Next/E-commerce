@@ -24,8 +24,8 @@ const   Footer = () => {
     marginLeft:"-10px",
     bottom: "0",
     width: '100%',
-    height: '300px', 
-    textAlign: 'center',
+    height: '350px', 
+    textAlign: 'left',
     backgroundColor: '#000', 
     color: '#fff',
     left:'0'
