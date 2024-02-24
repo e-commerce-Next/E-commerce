@@ -10,12 +10,20 @@ import Container from "@mui/material/Container";
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import WatchIcon from '@mui/icons-material/Watch';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import Link from "next/link";
-
+import { useRouter } from 'next/navigation';
 const Categories = () => {
+
+  const router=useRouter()
+  const navigate=(path:string)=>{
+  router.push(path)
+  }
+
+
   return (
     <Container sx={{ marginTop: "30px" }}>
       <Box>
@@ -50,30 +58,30 @@ const Categories = () => {
         </Typography>
       </Box>
       <Box marginTop={5} maxWidth={'100%'} sx={{display:'inline-flex', gap:'15px'}}>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-          <PhoneIphoneIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link href="/sorteproducts/Phones">  <Typography>Phones</Typography> </Link>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center',textDecoration:"none"}}  onClick={()=>{navigate('/sorteproducts/Sports')}}>
+          <SportsBaseballIcon sx={{fontSize:"50px",opacity:"0.8"}}/>
+         <Typography>Sports</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Computers')}}>
           <LaptopIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link href="/sorteproducts/Computers">  <Typography>Computers</Typography> </Link>
+            <Typography>Computers</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-          <WatchIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link href="/sorteproducts/SmartWatch">  <Typography>SmartWatch</Typography> </Link>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Phones')}}>
+          <PhoneIphoneIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
+        <Typography>Phones</Typography>
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-          <PhotoCameraIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link href="/sorteproducts/Cameras">  <Typography>Cameras</Typography> </Link>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Cameras')}}>
+          <CameraAltOutlinedIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
+          <Typography>Cameras</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Headphones')}}>
           <HeadphonesIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link href="/sorteproducts/Headphones">  <Typography>Headphone</Typography> </Link>
+      <Typography>Headphone</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Gaming')}}>
           <VideogameAssetIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
          
-          <Link href="/sorteproducts/Gaming">  <Typography>Gaming</Typography> </Link>
+          <Typography>Gaming</Typography> 
         </Button>
       </Box>
     </Container>

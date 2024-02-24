@@ -29,6 +29,9 @@ const getAllproducts = () => {
 const getAllProduct=(id)=>{
   return Products.findAll({where: {userIduser:id}})
 }
+const getOneProduct=(id)=>{
+  return Products.findAll({where: {idproducts:id}})
+}
 const addproduct=(data)=>{
   return Products.create(data)
 }
@@ -40,4 +43,4 @@ const deleteProduct=(id)=>{
 }
 
 module.exports = {Products,getAllProduct,addproduct,editproduct,deleteProduct
-,getAllproducts}
+,getAllproducts,getOneProduct}

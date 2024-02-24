@@ -16,4 +16,20 @@ const Cart = sequelize.define('cart', {
   timestamps: false
 });
 
-module.exports = {Cart}
+
+
+
+const addToCart = (data) => {
+  return Cart.create(data)
+}
+
+const getAll = (id) => {
+  return Cart.findAll({where:{userIduser: id}})
+}
+
+const deleteOne = (id) => {
+  return Cart.destroy({where:{idcart: id}})
+}
+
+
+module.exports = {Cart,addToCart,getAll,deleteOne}

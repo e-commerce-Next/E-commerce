@@ -1,18 +1,22 @@
 import About from "./AboutUs/page"
 import Nav from "./Navbar/page"
-import AllProducts from "./categorypage/page"
+import AllProduct from "./AllProduct/page"
 import Footer from "./footer/page"
-import SellerProfil from "./Seller/[id]/page"
-import SellerProductEdit from "./SellerProductEdit/[id]/page"
+import HomePage from "../app/homePage/page"
+import AllFlashsale from "./FlashSales/FlashSales"
+import CategoriesJBL from "./Video/page"
+
 
 export default function Home () {
 return (
     <div>
         <Nav/>
-        {/* <AllProducts/> */}
-        {/* <SellerProfil/> */}
-        
+        <HomePage/>
+        <AllFlashsale/>
+        <CategoriesJBL/>
         <Footer/>
+       
+        
         
     </div>
 )

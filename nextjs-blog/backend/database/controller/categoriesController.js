@@ -1,4 +1,4 @@
-const {getAllcategories, addCategorie ,delCategorie} = require('../model/categoriesModel')
+const {getAllcategories, addCategorie ,delCategorie,getCategoryByIdProduct} = require('../model/categoriesModel')
 
 const getCategories = async (req,res) => {
     const x= await getAllcategories()
@@ -31,4 +31,12 @@ const deleteCategorie =async(req,res)=>{
 console.log(err);
     }
 }
-module.exports={getCategories, addNewCategorie, deleteCategorie}
+
+const getCategoryByProduct = async (req,res)=>{
+    const id=req.params.id
+    getCategoryByIdProduct(id).then((data)=>{
+        res.send(data)
+    })
+    .catch((err)=>{res.send(err)})
+}
+module.exports={getCategories, addNewCategorie, deleteCategorie,getCategoryByProduct}
