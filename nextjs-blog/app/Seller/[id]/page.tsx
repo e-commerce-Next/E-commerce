@@ -3,17 +3,25 @@ import React, { useEffect, useState } from 'react'
 import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import Link from 'next/link';
+import SellerProductEdit from '../../SellerProductEdit/[id]/page'
+import SellerAddProduct from '../../SellerAddProduct/[id]/page'
+import { useRouter } from "next/navigation";
 
 
 
+const ProifleSeller = (props) => {
 
-const ProifleSeller = () => {
+    const router = useRouter()
+    const navigate = (path: string) => {
+        router.push(path)
+    }
 
   const [data,setData]=useState([])
-    console.log(data);
+  
+  console.log(data);
     
   useEffect(() => {
-    fetch('http://localhost:8080/product/getall/2') //changed to dyn
+    fetch(`http://localhost:8080/product/getall/${props.params.id}`)
         .then((res) => res.json())
         .then((data) => setData(data));
     }, []);
@@ -21,20 +29,46 @@ const ProifleSeller = () => {
     const deleteProduct = (id) => {
         fetch(`http://localhost:8080/product/delpro/${id}`,{method: 'DELETE'})
       }
-
     
+      const renderStars = (rating) => {
+
+        const roundedRating = Math.round(rating);
+        const stars = [];
+    
+        for (let i = 0; i < 5; i++) {
+          stars.push(
+            <span key={i} style={i < roundedRating ? styles.filledStar : styles.emptyStar}>
+              ★
+            </span>
+          );
+        }
+    
+        return stars;
+      };
+      const styles = {
+        filledStar: {
+          color: '#FFD700',
+        },
+        emptyStar: {
+          color: '#ccc',
+        },
+        starRating: {
+          marginTop: '10px',
+        },
+      }
+     
 
   return (
     <div>
 <div className="relative overflow-x-auto">
     <div className='mx-[850px] '>
-    <Link href="./SellerAddProduct">
-    <button
+    
+    <button onClick={()=>{navigate(`/SellerAddProduct/${props.params.id}`)}}
         type="submit"
         className="inline-block rounded-lg bg-black px-10 py-3 font-medium text-white w-[200px] mt-10 mb-10 ">
         Add Product
     </button>
-    </Link>
+     
     </div>
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -43,7 +77,7 @@ const ProifleSeller = () => {
                     Product name
                 </th>
                 <th scope="col" className="px-6 py-3 rounded-s-lg">
-                    Rating
+                    Description
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Qty
@@ -67,7 +101,7 @@ const ProifleSeller = () => {
                             {e.productName}
                         </th>
                         <td className="px-6 py-4">
-                            stars
+                            {e.description}
                         </td>
                         <td className="px-6 py-4">
                             {e.quantity}
@@ -76,10 +110,10 @@ const ProifleSeller = () => {
                             {e.price}
                         </td>
                         <td className="px-6 py-4">
-                            <MdDelete size={26} onClick={()=>{deleteProduct(e.idproducts)}}/>
+                            <MdDelete size={26} onClick={()=>{deleteProduct(e.idproducts), window.location.reload()}}/>
                         </td>
                         <td className="px-6 py-4">
-                            <Link href="./SellerProductEdit"><FiEdit size={22} /></Link>
+                           <button onClick={()=>{navigate(`/SellerProductEdit/${e.idproducts}`)}}><FiEdit size={22} /></button> 
                         </td>
                     </tr>
                 )
