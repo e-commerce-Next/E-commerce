@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/joy/Button";
 
-
 const CategoriesJBL = () => {
   
   const cld = new Cloudinary({cloud: {cloudName: 'dwcxnfihp'}});
@@ -19,11 +18,11 @@ const CategoriesJBL = () => {
       sx={{
         backgroundColor: "white",
         marginTop: "100px",
-        width: "100%",
+        width: "300%",
         height: "450px",
         zIndex: -1,
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "center",
       }}
     >
       <Box

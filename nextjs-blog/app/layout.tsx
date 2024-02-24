@@ -1,10 +1,6 @@
 
 import './ui/global.css'
 
-import CartPage from './homePage/page'
-import  AllProducts from './categorypage/page'
-import Categories from './homePage/page'
-import SlideCategories from './Slidecarrosel/page'
 
 export const metadata = {
   title: 'Create Next App',

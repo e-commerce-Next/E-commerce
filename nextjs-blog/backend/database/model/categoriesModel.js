@@ -8,7 +8,9 @@ const Categories = sequelize.define('categories', {
     autoIncrement: true
   },
   categoryname: DataTypes.STRING
-}, {
+},
+
+{
   tableName: 'categories',
   timestamps: false
 })
@@ -16,7 +18,9 @@ const Categories = sequelize.define('categories', {
 const getAllcategories=()=>{
   return Categories.findAll()
 }
-
+const getCategoryByIdProduct=(id)=>{
+ return Categories.findAll({where:{productIdproducts:id}})
+}
 const addCategorie=(add)=>{
   return Categories.create(add)
 }
@@ -26,4 +30,4 @@ const delCategorie=(id)=>{
 } 
 
 
-module.exports = {Categories, getAllcategories , addCategorie, delCategorie}
+module.exports = {Categories, getAllcategories , addCategorie, delCategorie,getCategoryByIdProduct}
