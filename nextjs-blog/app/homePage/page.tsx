@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/joy/Button";
@@ -82,27 +81,3 @@ const Categories = () => {
 };
 
 export default Categories;
-=======
-import Categories from './categories'
-import SlideCategories from './slidecarouss'
-import Nav from '../Navbar/page'
-import Footer from '../footer/page'
-import NewArrivals from '../Newarrival/page'
-import Services from '../Services/page'
-import AllFlashsale from '../FlashSales/FlashSales'
-import CategoriesJBL from '../Video/page'
-
-
-export default function Homepage () {
-    return <div>
-        {/* <Nav/> */}
-        <SlideCategories/>
-        <Categories/>
-        {/* <AllFlashsale/>
-        <CategoriesJBL/>
-        <NewArrivals/>
-        <Services/>
-        <Footer/> */}
-    </div>
-}
->>>>>>> 5fea0a946f1a84fc32af36f4831a3e87e45cdbcc
