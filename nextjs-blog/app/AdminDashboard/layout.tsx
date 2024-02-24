@@ -15,7 +15,6 @@ export default function AdminLayout({
           <Link href='../AdminDashboard' >Administration</Link>
         <Link href="../AdminDashboard/Clients">Clients</Link>
         <Link href='../AdminDashboard/Sellers'>Sellers</Link>
-        <Link href='../AdminDashboard/Categories'>Categories</Link>
         <Link href="../AdminDashboard/Products">Products</Link>
         <div className="flex">
         <input type="search"
