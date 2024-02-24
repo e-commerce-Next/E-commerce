@@ -2,7 +2,7 @@ require("dotenv").config()
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 
-const {getOneUser, addUser, editUser, deleteUser,getAll,findClients,findSellers} = require('../model/userModel')
+const {getOneUser, addUser, editUser,getAll,findClients,findSellers,deleteUser} = require('../model/userModel')
 const secretKey = 'mass'
 console.log(secretKey)
 
@@ -77,9 +77,16 @@ const updateUser = async (req, res) => {
         res.status(500).json(err)
     }
 }
+// const deleteClient=async(req,res)=>{
+//     try {
+//         const result=await User.destroy({where:{iduser:req.params.userId}})
+//         res.json(result) } 
+//         catch (error){res.send(error) }
+// }
 
 const destroyUser = async (req, res) => {
     const id = req.params.id
+    console.log(id);
     try{
         deleteUser(id)
         res.status(204).send('user deleted successfully')

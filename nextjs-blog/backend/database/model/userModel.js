@@ -54,5 +54,8 @@ const findSellers = () => {
     }
   });
   }
+const deleteUser = (id) =>{
+  return User.destroy({where:{iduser:id}})
+}
 
-module.exports = {User, getOneUser, addUser, editUser, getAll, findClients, findSellers}
+module.exports = {User, getOneUser, addUser, editUser, getAll, findClients, findSellers,deleteUser}

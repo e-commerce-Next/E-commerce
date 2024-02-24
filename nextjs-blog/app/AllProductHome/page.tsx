@@ -7,13 +7,29 @@ import { IconContext } from "react-icons";
 import { CiStar } from "react-icons/ci";
 import { FiHeart } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-
+import { Button } from "@mui/joy";
 export default function AllProduct() {
   const router = useRouter()
   const navigate = (path: string) => {
       router.push(path)
   }
+  const like=(day)=>{
+    fetch(`http://localhost:8080/favorit/like`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(day)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+        })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
+   
+
     const [data, setData] = useState([])
+
     useEffect(() => {
         fetch('http://localhost:8080/product/getall')
             .then((res) => res.json())

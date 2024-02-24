@@ -27,6 +27,25 @@ export default function AllProduct() {
             .then((data) => setData(data));
     }, []);
 
+
+
+
+const addtoCart=(obj)=>{
+    fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(obj)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+        })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
+
+  
+
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -89,7 +108,6 @@ export default function AllProduct() {
                     </div>
                     <div className="flex flex-col items-center mr-8">
                         <RiBriefcaseLine className="text-gray-500 w-28 h-8" />
-
                     </div>
                     <div className="flex flex-col items-center">
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
@@ -113,7 +131,7 @@ export default function AllProduct() {
                                     {helperPricePromotion(product)}
                                     <div className="ml-auto flex">
                                         <button><LuShoppingCart className="text-black w-28  h-8"/></button>
-                                        <button><FiHeart className="text-black w-28  h-8" /></button>
+                                        <button onClick={()=>{addtoCart({product:product,userIduser:7})}}><FiHeart className="text-black w-28  h-8" /></button>
                                     </div>
                                 </div>
                             </div>

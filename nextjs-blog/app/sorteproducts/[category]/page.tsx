@@ -2,13 +2,16 @@
 import { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { FiHeart } from "react-icons/fi";
-
+import { IoPhonePortraitSharp } from "react-icons/io5"
 import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
+import { LiaGamepadSolid } from "react-icons/lia";
+import Link from "next/link";
+import Nav from "../../Navbar/page";
 export default function sortedProducts(props) {
   const [products, setProducts] = useState([]);
-
-  //   console.log(categories)
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 4;
 
   useEffect(() => {
     fetch("http://localhost:8080/product/getall")
@@ -26,8 +29,29 @@ export default function sortedProducts(props) {
       });
   }, []);
 
+  
+const addtoCart=(obj)=>{
+    fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(obj)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+        })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
 
- const helperPricePromotion=(product)=>{
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const helperPricePromotion=(product)=>{
         if(product.promotion!==0){
             return (<div className="justify-start items-start gap-3 inline-flex">
             <div className="text-red-500 text-base font-medium font-['Poppins'] leading-normal">
@@ -60,36 +84,31 @@ export default function sortedProducts(props) {
         }
     }
 
-
-
-
-
-
   return (
-   
-        <div className="text-center p-10 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl" >
+   <>
+   <Nav/>
+        <div className="text-center p-10" >
+    
                 <div className="flex justify-center">
-                    <div className="flex flex-col items-center mr-8 ">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
                         <MdSportsBaseball className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Sports</span>
+                         <Link href="/sorteproducts/Sports"><span className="block text-center no-underline text-black-500">Sports</span> </Link>
                     </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <MdHome className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Home & Garden</span>
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                        <IoPhonePortraitSharp className="text-gray-500 w-28 h-8" />
+                          <Link  href="/sorteproducts/Phones">     <span className="block text-center no-underline">Phones</span> </Link>
                     </div>
-                    <div className="flex flex-col items-center mr-8">
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
+                        <LiaGamepadSolid className="text-gray-500 w-28 h-8" />
+                          <Link href="/sorteproducts/Gaming">     <span className="block text-center">Gaming</span> </Link>
+                    </div>
+                 
+                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl">
                         <RiComputerLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Computers</span>
+                      <Link href="/sorteproducts/Computers">     <span className="block text-center">Computers</span> </Link>
                     </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <RiBook3Line className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Books</span>
-                    </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <RiBriefcaseLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Office & Stationery</span>
-                    </div>
-                    <div className="flex flex-col items-center">
+            
+                    <div className="flex flex-col items-center  shadow-md rounded-xl duration-500  hover:shadow-xl">
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
                         <span className="block text-center">Cameras</span>
                     </div>
@@ -99,23 +118,26 @@ export default function sortedProducts(props) {
                 id="Projects"
                 className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
             >
-      {/* <h1>{props.params.category}</h1> */}
+  
 
-      {products.map((e,index)=>{
+      {currentProducts.map((product,index)=>{
         return (
             <div key={index} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
-                <img src={e.images[0] &&  e.images[0].image} alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
-                {helperTagPromotion(e)}
-                <div className="px-4 py-3 w-72">
-                    <span className="text-gray-400 mr-3 uppercase text-xs">{e.category}</span>
-                    <p className="text-lg font-bold text-black truncate block capitalize">{e.productName}</p>
-                    <div className="flex items-center">
-                        {helperPricePromotion(e)}
-                        <div className="ml-auto flex">
-                            <button><LuShoppingCart className="text-black w-28  h-8" /></button>
+            <a>
+                <img src={product.images[0] &&  product.images[0].image} alt="Product" className="h-72 w-72 object-cover rounded-t-xl" />
+             
+                        <div className="flex flex-justify-between">
+                            <button onClick={()=>{addtoCart({product:product,userIduser:7})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
                             <button><FiHeart className="text-black w-28  h-8" /></button>
                         </div>
+                <div className="px-4 py-3 w-72">
+              <div> {helperTagPromotion(product)}</div>
+                    <span className="text-gray-400 mr-3 uppercase text-xs">{product.categories[0].categoryname}</span>
+                    <p className="text-lg font-bold text-black truncate block capitalize text-left">{product.productName}</p> <br />
+                    <span className="text-gray-400 mr-3 uppercase text-sm">{product.description}</span>
+                    {/* <p className="text-lg font-bold text-black truncate block ">{product.description}</p> */}
+                    <div className="flex items-center">
+                      
                     </div>
                 </div>
             </a>
@@ -125,15 +147,21 @@ export default function sortedProducts(props) {
         )
     })}
     </section>
+    <div className="mt-4 flex justify-center">
+                {Array.from({ length: Math.ceil(products.length / productsPerPage) }, (_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => paginate(i + 1)}
+                        className={`mx-1 px-3 py-1 rounded ${
+                            currentPage === i + 1 ? 'bg-gray-500 text-white' : 'bg-gray-200'
+                        }`}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+            </div>
     </div>
+    </>
   );
 }
 
-{/* <div>
-<svg className="w-6 h-6 text-gray-800 dark:text-white absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z"/>
-</svg>
-<svg className="w-6 h-6 text-gray-800 dark:text-white relative ml-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
-</svg>
-</div> */}
