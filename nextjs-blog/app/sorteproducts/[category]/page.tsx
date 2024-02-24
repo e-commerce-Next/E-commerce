@@ -42,7 +42,7 @@ export default function sortedProducts(props) {
       });
   }, []);
 
-  
+  const userId =  localStorage.getItem("id")
 const addtoCart=(obj)=>{
     fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
        'Content-type': 'application/json'},
@@ -140,7 +140,7 @@ const addtoCart=(obj)=>{
                 <img src={product.images[0] &&  product.images[0].image} alt="Product" className="h-72 w-72 object-cover rounded-t-xl" />
              
                         <div className="flex justify-between">
-                            <button onClick={()=>{addtoCart({product:product,userIduser:7})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
+                            <button onClick={()=>{addtoCart({product:product,userIduser:userId})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
                             <button><FiHeart className="text-black w-28  h-8" /></button>
                         </div>
                 <div className="px-4 py-3 w-72">

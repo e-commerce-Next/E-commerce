@@ -45,7 +45,8 @@ const SignIn = () => {
         });
     }
   };
-
+ const userId =  localStorage.getItem("id")
+ console.log(userId)
   const author = async (id, token, role) => {
    
     const data = { token: token };
