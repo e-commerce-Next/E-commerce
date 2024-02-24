@@ -26,6 +26,22 @@ export default function AllProduct() {
        console.log(err);
         })
     }
+
+    const userId =  localStorage.getItem("id")
+const addtoCart=(obj)=>{
+    fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+       'Content-type': 'application/json'},
+        body:JSON.stringify(obj)
+     })
+     .then((response) => response.json())
+     .then((result)=>{
+     console.log(result,"added")
+     })
+      .catch((err)=>{
+       console.log(err);
+        })
+    }
+
    
 
     const [data, setData] = useState([])
@@ -98,7 +114,8 @@ return(
      {helperTagPromotion(e)}
       
       {/* Add To Cart Button */}
-      <div className="absolute left-0 bottom-0 w-full h-[41px] bg-black rounded-bl rounded-br z-10 flex justify-center items-center">
+      <div className="absolute left-0 bottom-0 w-full h-[41px] bg-black rounded-bl rounded-br z-10 flex justify-center items-center cursor-pointer"
+      onClick={()=>{addtoCart({product:e,userIduser:userId})}}>
         <div className="text-white font-medium font-['Poppins'] leading-normal">
           Add To Cart
         </div>

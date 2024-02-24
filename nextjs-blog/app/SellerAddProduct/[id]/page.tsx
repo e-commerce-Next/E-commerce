@@ -1,16 +1,23 @@
 "use client"
 import React, { useState } from "react";
-import Nav from '../Navbar/page';
-import SellerNav from '../SellerNavBar/page';
+import Nav from '../../Navbar/page';
+import SellerNav from '../../SellerNavBar/page';
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import Seller from "../../Seller/[id]/page"
 
-const SellerProductEdit = () => {
+const SellerProductEdit = (props) => {
     const [quantity, setQuantity] = useState<number>(1);
     const [pName, setProductName] = useState<string>("");
     const [productPrice, setProductPrice] = useState<number>(0);
     const [productDescription, setProductDescription] = useState<string>("");
     const [productQuantity, setProductQuantity] = useState<number>(0);
     const [productPromotion, setProductPromotion] = useState<number>(0);
+
+    const router = useRouter()
+    const navigate = (path: string) => {
+        router.push(path)
+    }
 
     const incrementQuantity = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
@@ -22,7 +29,7 @@ const SellerProductEdit = () => {
     };
 
     const add = () => {
-        axios.post('http://localhost:8080/product/addpro/1', {
+        axios.post(`http://localhost:8080/product/addpro/${props.params.id}`, {
             productName: pName,
             description: productDescription,
             Quantity: productQuantity,
@@ -35,6 +42,7 @@ const SellerProductEdit = () => {
             
         });
     };
+
 
     return (
         <div>
@@ -87,7 +95,7 @@ const SellerProductEdit = () => {
                         <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">                       
                             Cancel
                         </button>
-                        <button type="button" className="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={add}>
+                        <button type="button" className="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={()=>{add(),navigate('/Seller/1')}}>
                             Add Product
                         </button>
                     </div>

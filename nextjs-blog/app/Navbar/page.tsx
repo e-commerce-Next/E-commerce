@@ -6,6 +6,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { FaRegHeart } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
+import Seller from '../Seller/[id]'
 import Shopp from './Shopp'
 
 
@@ -25,6 +26,11 @@ const navigate=(path:string)=>{
 router.push(path)
 }
   
+const handleLogout = () => {
+  localStorage.removeItem("id");
+  
+  navigate("/Signin")
+};
 
 
   return (
@@ -84,7 +90,7 @@ router.push(path)
             <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
              
                   <button onClick={() => navigate("/User")} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Profile</button>
-                  
+                  <button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Logout</button>
              
             </div>
           )}

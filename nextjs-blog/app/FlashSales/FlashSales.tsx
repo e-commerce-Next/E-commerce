@@ -52,6 +52,9 @@ export default function AllFlashsale() {
       )
     }
   }
+
+
+  const userId =  localStorage.getItem("id")
     const addtoCart=(obj)=>{
       fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
          'Content-type': 'application/json'},
@@ -73,7 +76,7 @@ export default function AllFlashsale() {
       
     return(
         <div
-      style={{ display: "flex", marginTop: "10%", justifyContent: "center" }}
+      style={{ display: "flex", marginTop: "1.25rem", justifyContent: "center" }}
     >
       <div className=" flex-col justify-center items-center  gap-10 inline-flex"> 
         <div className="justify-center items-end gap-[470px] inline-flex">
@@ -83,7 +86,7 @@ export default function AllFlashsale() {
                 <div className="w-5 h-10 flex-col justify-center items-center inline-flex">
                   <div className="w-5 h-10 bg-red-500 rounded"></div>
                 </div>
-                <div className="text-red-500 text-base font-semibold font-['Poppins'] leading-tight">
+                <div className="text-red-500 text-base font-semibold font-['Poppins'] leading-tight ml-auto">
                   Today's
                 </div>
               </div>
@@ -186,8 +189,8 @@ export default function AllFlashsale() {
                   </div>
                 </div>
                 {/* Add To Cart Button */}
-                <div className="absolute left-0 bottom-0 w-full h-[41px] bg-black rounded-bl rounded-br z-10 flex justify-center items-center">
-                  <div className="text-white font-medium font-['Poppins'] leading-normal">
+                <div className="absolute left-0 bottom-0 w-full h-[41px] bg-black rounded-bl rounded-br z-10 flex justify-center items-center cursor-pointer">
+                  <div className="text-white font-medium font-['Poppins'] leading-normal" onClick={()=>{addtoCart({product:e,userIduser:userId})}}>
                     Add To Cart
                   </div>
                 </div>
