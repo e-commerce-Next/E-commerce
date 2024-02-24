@@ -8,13 +8,15 @@ import Footer from "../footer/page";
 import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
 import { useRouter } from "next/navigation";
-
+import Popup from '../Popup/Popup'
 export default function AllProduct() {
     const router = useRouter()
     const navigate = (path: string) => {
         router.push(path)
     }
     const [data, setData] = useState([]);
+    const [refresh,setRefresh]=useState(false)
+   
     console.log('product', data)
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 4;
@@ -29,19 +31,21 @@ export default function AllProduct() {
 
 
 
-
-const addtoCart=(obj)=>{
-    fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
-       'Content-type': 'application/json'},
-        body:JSON.stringify(obj)
-     })
-     .then((response) => response.json())
-     .then((result)=>{
-     console.log(result,"added")
-        })
-      .catch((err)=>{
-       console.log(err);
-        })
+    const userId =  localStorage.getItem("id")
+const addtoCart= async (obj)=>{
+   try {
+ fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+    'Content-type': 'application/json'},
+     body:JSON.stringify(obj)
+  })
+  .then((response) => response.json())
+  .then((result)=>{
+  console.log(result,"added")})
+ setRefresh(!refresh)
+  
+}
+    
+catch (error) {console.log("error")}
     }
 
   
@@ -139,7 +143,7 @@ const addtoCart=(obj)=>{
                     </div> 
                 ))} */}
                 {currentProducts.map((product, index) => (
-                    <div className="group my-10 max-w-md flex flex-col overflow-hidden border border-gray-100 bg-white shadow-md" style={{ width: "300px", height: "400px" }}>
+                    <div key={index} className="group my-10 max-w-md flex flex-col overflow-hidden border border-gray-100 bg-white shadow-md" style={{ width: "300px", height: "400px" }}>
                         <a className="relative flex h-60 overflow-hidden" >
                             <img className="absolute top-0 right-0 h-full w-full object-cover" src={product.images[0] && product.images[0].image} alt="product image" onClick={()=>{navigate(`/Product/${product.idproducts}`)}} />
                             {helperTagPromotion(product)}
@@ -148,9 +152,11 @@ const addtoCart=(obj)=>{
                                 <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
                                 <div className="h-3 w-3 rounded-full border-2 border-white bg-transparent"></div>
                             </div> */}
-                            <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0">
-                                <button className="flex h-10 w-10 items-center justify-center bg-black-900 text-white transition hover:bg-red-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0"
+                          >
+                                <button className="flex h-10 w-10 items-center justify-center bg-black-900 text-white transition hover:bg-red-500"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" onClick={()=>{addtoCart({product:product,userIduser:userId})}}>
                                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                                     </svg>
                                 </button>
@@ -167,7 +173,8 @@ const addtoCart=(obj)=>{
                                     {helperPricePromotion(product)}
                                 </p>
                             </div>
-                            <button className="flex items-center justify-center bg-red-500 px-2 py-1 text-sm text-white transition hover:bg-red-500">
+                            <button className="flex items-center justify-center bg-red-500 px-2 py-1 text-sm text-white transition hover:bg-red-500"
+                            onClick={()=>{addtoCart({product:product,userIduser:userId})}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                                 </svg>

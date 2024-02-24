@@ -28,11 +28,12 @@ const calculateSubtotal = (quantity:number, price:number) => {
 };
 
 
-  
+const userId =  localStorage.getItem("id")
+console.log(userId,"userId")
 
   useEffect(()=>{
-    const id = 7
-     fetch(`http://localhost:8080/cart/getall/${id}`,{method:'GET', headers: {
+   
+     fetch(`http://localhost:8080/cart/getall/${userId}`,{method:'GET', headers: {
         'Content-type': 'application/json'}})
       .then((response) => response.json())
       .then((result)=>{

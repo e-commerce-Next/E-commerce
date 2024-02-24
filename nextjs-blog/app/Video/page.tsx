@@ -29,7 +29,7 @@ const CategoriesJBL = () => {
         width={"100%"}
         display={"flex"}
         flexDirection={"column"}
-        marginTop={"50px"}
+        marginTop={"10px"}
         gap={"20px"}
         paddingLeft={"30px"}
       >
