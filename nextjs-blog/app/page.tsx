@@ -15,6 +15,7 @@ return (
         <AllFlashsale/>
         <CategoriesJBL/>
         <Footer/>
+       
         
         
     </div>

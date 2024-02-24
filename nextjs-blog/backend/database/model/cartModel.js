@@ -16,6 +16,9 @@ const Cart = sequelize.define('cart', {
   timestamps: false
 });
 
+
+
+
 const addToCart = (data) => {
   return Cart.create(data)
 }

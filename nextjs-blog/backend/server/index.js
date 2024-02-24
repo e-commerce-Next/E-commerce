@@ -11,7 +11,7 @@ const cartRoute = require ('../routes/cartRoute')
 const PORT = 8080
 const app = express()
 const favoritRoute = require('../routes/favoritRoute')
-
+const reviewroute=require("../routes/reviewRoute")
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -28,6 +28,7 @@ app.use('/token', authorRoute)
 app.use('/favorit', favoritRoute)
 app.use('/cart', cartRoute)
 app.use('/block',blockRoute)
+app.use("/review",reviewroute)
 
 app.listen(PORT, ()=>{
     console.log(`Server listening at http://localhost:${PORT}`)
