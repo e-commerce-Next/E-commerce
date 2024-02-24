@@ -40,8 +40,8 @@ router.push(path)
             <option>English</option>
           </select>
         </div>
-        <div className=' justify-center gap-8 mt-6 mb-6 ml-20 flex items-center '>
-          <h1 className='absolute left-10 font-bold text-3xl mb-1 mr-36'>Exclusive 🛒</h1>
+        <div className=' justify-center gap-8 mt-6 mb-6 ml-20 flex items-center cursor-pointer'>
+          <h1 className='absolute left-10 font-bold text-3xl mb-1 mr-36 ' onClick={() => navigate("/")} >Exclusive 🛒</h1>
   <div className="flex gap-4 ">
 
 

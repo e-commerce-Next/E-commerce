@@ -4,12 +4,6 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import "bootstrap/dist/css/bootstrap.min.css"
-// import Slider from "react-slick";
-// import { useLocation, useNavigate } from 'react-router-dom';
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import  redirect  from 'next/navigation'
-
 import Carousel from 'react-bootstrap/Carousel';
 import Container from '@mui/material/Container';
 

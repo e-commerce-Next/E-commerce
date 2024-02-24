@@ -15,8 +15,15 @@ import HeadphonesIcon from '@mui/icons-material/Headphones';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import Link from "next/link";
-
+import { useRouter } from 'next/navigation';
 const Categories = () => {
+
+  const router=useRouter()
+  const navigate=(path:string)=>{
+  router.push(path)
+  }
+
+
   return (
     <Container sx={{ marginTop: "30px" }}>
       <Box>
@@ -51,31 +58,30 @@ const Categories = () => {
         </Typography>
       </Box>
       <Box marginTop={5} maxWidth={'100%'} sx={{display:'inline-flex', gap:'15px'}}>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center',textDecoration:"none"}}>
-          {/* <PhoneIphoneIcon sx={{fontSize:'50px', opacity:'0.8'}}/> */}
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center',textDecoration:"none"}}  onClick={()=>{navigate('/sorteproducts/Sports')}}>
           <SportsBaseballIcon sx={{fontSize:"50px",opacity:"0.8"}}/>
-          <Link className="no-underline" href="/sorteproducts/Sports">  <Typography>Sports</Typography> </Link>
+         <Typography>Sports</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Computers')}}>
           <LaptopIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link className="no-underline" href="/sorteproducts/Computers">  <Typography>Computers</Typography> </Link>
+            <Typography>Computers</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Phones')}}>
           <PhoneIphoneIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link className="no-underline" href="/sorteproducts/Phones">  <Typography>Phones</Typography> </Link>
+        <Typography>Phones</Typography>
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Cameras')}}>
           <CameraAltOutlinedIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link className="no-underline" href="/sorteproducts/Cameras">  <Typography>Cameras</Typography> </Link>
+          <Typography>Cameras</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Headphones')}}>
           <HeadphonesIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
-          <Link className="no-underline" href="/sorteproducts/Headphones">  <Typography>Headphone</Typography> </Link>
+      <Typography>Headphone</Typography> 
         </Button>
-        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <Button variant="outlined" sx={{color:"black", width: 200, height: 160, display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}  onClick={()=>{navigate('/sorteproducts/Gaming')}}>
           <VideogameAssetIcon sx={{fontSize:'50px', opacity:'0.8'}}/>
          
-          <Link className="no-underline" href="/sorteproducts/Gaming">  <Typography>Gaming</Typography> </Link>
+          <Typography>Gaming</Typography> 
         </Button>
       </Box>
     </Container>
