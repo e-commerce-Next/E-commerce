@@ -59,7 +59,7 @@ const signIn = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.params.id
-    const {firstName, lastName, emailPhone, password, role, adresse, image} = req.body
+    const {firstName, lastName, emailPhone, password} = req.body
     try{
         const Hashed = await bcrypt.hash(password, 10)
         editUser(id, {
@@ -67,9 +67,6 @@ const updateUser = async (req, res) => {
             lastName:lastName,
             emailPhone: emailPhone,
             password: Hashed,
-            role: role,
-            adresse: adresse,
-            image: image
         })
         res.status(201).json('data updated')
     }
