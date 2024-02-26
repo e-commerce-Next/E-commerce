@@ -9,13 +9,23 @@ import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
 import { useRouter } from "next/navigation";
 import Popup from '../Popup/Popup'
+
+
+import { FaHeadphonesSimple } from "react-icons/fa6";
+import { IoPhonePortraitSharp } from "react-icons/io5"
+import { LiaGamepadSolid } from "react-icons/lia";
+
+
+
 export default function AllProduct() {
+    const userId = localStorage.getItem("id")
     const router = useRouter()
     const navigate = (path: string) => {
         router.push(path)
     }
     const [data, setData] = useState([]);
     const [refresh,setRefresh]=useState(false)
+    
    
     console.log('product', data)
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,23 +40,34 @@ export default function AllProduct() {
     }, []);
 
 
-
-    const userId =  localStorage.getItem("id")
 const addtoCart= async (obj)=>{
    try {
  fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
     'Content-type': 'application/json'},
      body:JSON.stringify(obj)
   })
-  .then((response) => response.json())
-  .then((result)=>{
-  console.log(result,"added")})
- setRefresh(!refresh)
-  
+  .then((response) => {response.json(); setRefresh(true)})
+ 
 }
     
 catch (error) {console.log("error")}
     }
+
+
+    const like= async (obj)=>{
+        try {
+      fetch(`http://localhost:8080/favorit/like`,{method:'POST', headers: {
+         'Content-type': 'application/json'},
+          body:JSON.stringify(obj)
+       })
+       .then((response) => {response.json(); setRefresh(true)})
+      
+     }
+         
+     catch (error) {console.log("error")}
+         }
+
+    
 
   
 
@@ -94,29 +115,33 @@ catch (error) {console.log("error")}
             <div><NavBar></NavBar></div>
             <div className="text-center p-10">
                 <div className="flex justify-center">
-                    <div className="flex flex-col items-center mr-8">
+                    <div className="flex flex-col items-center mr-8   cursor-pointer" onClick={() => navigate("/sorteproducts/Sports")}>
                         <MdSportsBaseball className="text-gray-500 w-28 h-8" />
-
+                       {/* <span className="block text-center  text-black-500">Sports</span> */}
                     </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <MdHome className="text-gray-500 w-28 h-8" />
-
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Phones")}>
+                        <IoPhonePortraitSharp className="text-gray-500 w-28 h-8" />
+                           {/* <span className="block text-center ">Phones</span>  */}
                     </div>
-                    <div className="flex flex-col items-center mr-8">
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Gaming")}>
+                        <LiaGamepadSolid className="text-gray-500 w-28 h-8" />
+                          {/* <span className="block text-center">Gaming</span>  */}
+                    </div>
+                 
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Computers")}>
                         <RiComputerLine className="text-gray-500 w-28 h-8" />
-
+                       {/* <span className="block text-center">Computers</span> */}
                     </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <RiBook3Line className="text-gray-500 w-28 h-8" />
-
-                    </div>
-                    <div className="flex flex-col items-center mr-8">
-                        <RiBriefcaseLine className="text-gray-500 w-28 h-8" />
-                    </div>
-                    <div className="flex flex-col items-center">
+            
+                    <div className="flex flex-col items-center   cursor-pointer" onClick={() => navigate("/sorteproducts/Cameras")}>
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
-
+                        {/* <span className="block text-center">Cameras</span> */}
                     </div>
+                    <div className="flex flex-col items-center   cursor-pointer" onClick={() => navigate("/sorteproducts/Headphones")}>
+                        <FaHeadphonesSimple className="text-gray-500 w-28 h-8" />
+                        {/* <span className="block text-center">Cameras</span> */}
+                    </div>
+
                 </div>
             </div>
             <section
@@ -144,7 +169,7 @@ catch (error) {console.log("error")}
                 ))} */}
                 {currentProducts.map((product, index) => (
                     <div key={index} className="group my-10 max-w-md flex flex-col overflow-hidden border border-gray-100 bg-white shadow-md" style={{ width: "300px", height: "400px" }}>
-                        <a className="relative flex h-60 overflow-hidden" >
+                        <div className="relative flex h-60 overflow-hidden" >
                             <img className="absolute top-0 right-0 h-full w-full object-cover" src={product.images[0] && product.images[0].image} alt="product image" onClick={()=>{navigate(`/Product/${product.idproducts}`)}} />
                             {helperTagPromotion(product)}
                             {/* <div className="absolute bottom-0 mb-4 flex w-full justify-center space-x-4">
@@ -155,16 +180,17 @@ catch (error) {console.log("error")}
                             <div className="absolute -right-16 bottom-0 mr-2 mb-4 space-y-2 transition-all duration-300 group-hover:right-0"
                           >
                                 <button className="flex h-10 w-10 items-center justify-center bg-black-900 text-white transition hover:bg-red-500"
+                                onClick={()=>{like({product:product,userIduser:userId})}}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" onClick={()=>{addtoCart({product:product,userIduser:userId})}}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" >
                                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                                     </svg>
                                 </button>
                             </div>
-                        </a>
+                        </div>
                         <div className="mt-4 px-5 pb-5">
                             <a href="#">
-                                <h5 className="text-xl tracking-tight text-slate-900">{product.productName} -{product.color} </h5>
+                                <h5 className="text-xl  text-slate-900">{product.productName} -{product.color} </h5>
                             </a>
                             <div className="mt-2 mb-5 flex items-center justify-between">
                                 <p>
@@ -173,12 +199,13 @@ catch (error) {console.log("error")}
                                     {helperPricePromotion(product)}
                                 </p>
                             </div>
+                            { (product.reviews.reduce((total, ele) => (total + ele.review), 0) / product.reviews.length).toFixed(1) }
                             <button className="flex items-center justify-center bg-red-500 px-2 py-1 text-sm text-white transition hover:bg-red-500"
                             onClick={()=>{addtoCart({product:product,userIduser:userId})}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                                 </svg>
-                                Add to cart
+                                <Popup/>
                             </button>
                         </div>
                     </div>

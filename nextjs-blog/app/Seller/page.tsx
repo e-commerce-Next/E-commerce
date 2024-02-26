@@ -11,9 +11,9 @@ const ProifleSeller = () => {
 
   const [data,setData]=useState([])
     console.log(data);
-    
+    const userId = localStorage.getItem("id")
   useEffect(() => {
-    fetch('http://localhost:8080/product/getall/2') //changed to dyn
+    fetch(`http://localhost:8080/product/getall/${userId}`) //changed to dyn
         .then((res) => res.json())
         .then((data) => setData(data));
     }, []);

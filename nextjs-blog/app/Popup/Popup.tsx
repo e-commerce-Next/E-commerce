@@ -20,7 +20,7 @@ export default function Popup() {
 
   return (
     <div>
-      <Button onClick={handleClick}>aaaa</Button>
+      <Button onClick={handleClick} sx={{color:"white"}}>Add to Cart</Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
