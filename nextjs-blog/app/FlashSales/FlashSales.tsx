@@ -77,7 +77,7 @@ export default function AllFlashsale() {
          'Content-type': 'application/json'},
           body:JSON.stringify(obj)
        })
-       .then((response) => {response.json(); setRefresh(true)})
+       .then((response) => {response.json()})
       
      }
          

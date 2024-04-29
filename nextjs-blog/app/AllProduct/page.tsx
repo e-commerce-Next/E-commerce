@@ -189,9 +189,9 @@ catch (error) {console.log("error")}
                             </div>
                         </div>
                         <div className="mt-4 px-5 pb-5">
-                            <a href="#">
+                           
                                 <h5 className="text-xl  text-slate-900">{product.productName} -{product.color} </h5>
-                            </a>
+                            
                             <div className="mt-2 mb-5 flex items-center justify-between">
                                 <p>
                                     {/* <span className="text-3xl font-bold text-slate-900">$79</span>

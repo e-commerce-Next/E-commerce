@@ -18,5 +18,5 @@ export default function Homepage () {
         <NewArrivals/>
         <Services/>
         <Footer/> */}
-    </div>  
+    </div>
 }

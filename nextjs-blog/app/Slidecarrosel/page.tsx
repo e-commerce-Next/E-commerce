@@ -19,50 +19,9 @@ const SlideCategories = () => {
 
   return (
     <Container sx={{display:'flex', justifySelf:'auto'}}>
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: 400,
-          bgcolor: "background.paper",
-          maxHeight: 400,
-        }}
-      >
-        <List aria-label="Categories">
-          {/* <ListItemButton sx={{ maxHeight: "24px" }} onClick={()=>{navigate("/womanfashion")}}> */}
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Woman's Fashion
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }}>
-          {/* <ListItemButton sx={{ maxHeight: "24px" }} onClick={()=>{}}> */}
-            Men's Fashion
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }}>
-          {/* <ListItemButton sx={{ maxHeight: "24px" }} onClick={}> */}
-            Electronics
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Home & Lifestyle
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Medicine
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Sports & Outdoor
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Baby's & Toys
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Groceries & Pets
-          </ListItemButton>
-          <ListItemButton sx={{ maxHeight: "24px" }} >
-            Health & Beauty
-          </ListItemButton>
-        </List>
-      </Box>
 
       <Box>
-        <div style={{float:'right'}}>
+        <div style={{float:'right',display:"center"}}>
             <Carousel>
             <Carousel.Item>
                 <img style={{height:'40vh'}}

@@ -121,7 +121,7 @@ const deleteProdFromCart = async (idcart)=>{
                               <li key={index} className="flex py-6">
                                 <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border border-gray-200">
                                   <img
-                                    src={cart.product.images[0].image}
+                                    src={cart.product?.images[0]?.image}
                                     alt='hi'
                                     className="h-full w-full object-cover object-center"
                                   />

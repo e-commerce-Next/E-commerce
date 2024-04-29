@@ -14,6 +14,8 @@ import { useRouter } from 'next/navigation';
 import Nav from '../Navbar/page';
 import Footer from '../footer/page';
 import  "./design.css"
+import Seller from '../Seller/[id]/page'
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -67,8 +69,8 @@ const SignIn = () => {
             } else {
               localStorage.setItem("id", id)
               if (role === "client") {
-                navigate("/");
-              } else navigate("/ProfileSeller");
+                navigate(`/`);
+              } else navigate(`/Seller/${userId}`);
             }
           })
           .catch((err) => {
