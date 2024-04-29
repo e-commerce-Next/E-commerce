@@ -8,6 +8,7 @@ import { CiStar } from "react-icons/ci";
 import { FiHeart } from "react-icons/fi";
 import Time from '../Time/Time'
 import { useRouter } from "next/navigation";
+import Popup from '../Popup/Popup'
 export default function AllFlashsale() {
   const router = useRouter()
   const navigate = (path: string) => {
@@ -70,6 +71,18 @@ export default function AllFlashsale() {
           })
       }
 
+      const like= async (obj)=>{
+        try {
+      fetch(`http://localhost:8080/favorit/like`,{method:'POST', headers: {
+         'Content-type': 'application/json'},
+          body:JSON.stringify(obj)
+       })
+       .then((response) => {response.json()})
+      
+     }
+         
+     catch (error) {console.log("error")}
+         }
 
 
 
@@ -191,11 +204,11 @@ export default function AllFlashsale() {
                 {/* Add To Cart Button */}
                 <div className="absolute left-0 bottom-0 w-full h-[41px] bg-black rounded-bl rounded-br z-10 flex justify-center items-center cursor-pointer">
                   <div className="text-white font-medium font-['Poppins'] leading-normal" onClick={()=>{addtoCart({product:e,userIduser:userId})}}>
-                    Add To Cart
+                  <Popup/>
                   </div>
                 </div>
                 {/* Heart and Eye Icons */}
-                <div className="absolute top-2 right-2 flex flex-col gap-2 z-10">
+                <div className="absolute top-2 right-2 flex flex-col gap-2 z-10" onClick={()=>{like({product:e,userIduser:userId})}}>
                   <button><FiHeart className="text-black w-6 h-6" /></button>
                   <button onClick={()=>navigate(`/Product/${e.idproducts}`)}><FaEye className="text-black w-6 h-6" /></button>
                 </div>
@@ -218,7 +231,7 @@ export default function AllFlashsale() {
                 <div className="justify-start items-start flex gap-1">
                   <CiStar /><CiStar /><CiStar /><CiStar />
                   <div className="opacity-50 text-black text-sm font-semibold font-['Poppins'] leading-[21px]">
-                    ({e.reviews.length})
+                  { (e.reviews.reduce((total, ele) => (total + ele.review), 0) / e.reviews.length).toFixed(1) }
                   </div>
                 </div>
               </div>

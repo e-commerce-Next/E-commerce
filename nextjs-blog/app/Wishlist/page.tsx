@@ -58,6 +58,19 @@ const Wishlist = () => {
             console.log(err);
         })
     }
+    const addtoCart=(obj)=>{
+      fetch(`http://localhost:8080/cart/add`,{method:'POST', headers: {
+         'Content-type': 'application/json'},
+          body:JSON.stringify(obj)
+       })
+       .then((response) => response.json())
+       .then((result)=>{
+       console.log(result,"added")
+          })
+        .catch((err)=>{
+         console.log(err);
+          })
+      }
 
   return (
     <div>
@@ -210,7 +223,7 @@ const Wishlist = () => {
                   backgroundColor: "black",
                   borderRadius: "none",
                 }}
-                onClick={()=>navigate('/oneview')}
+                onClick={()=>{addtoCart({product:product,userIduser:userId})}}
               >
                 <AddShoppingCartIcon sx={{ marginRight: "15px" }} />
                 Add to Cart

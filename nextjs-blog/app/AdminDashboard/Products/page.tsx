@@ -5,11 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 interface Product {
   idproducts: number;
   productName: string;
-<<<<<<< HEAD
   // ProductImage: string;
-=======
-  images: string[];
->>>>>>> e4913f39ee2ecdeb602908df6cfcb560947b7fc8
   price: number;
   images:string[]
   description:string
@@ -92,11 +88,7 @@ const AdminProducts = () => {
                 {prod.productName}
                 </td>
                 <td className="px-6 py-4">
-<<<<<<< HEAD
              <img src={prod.images[0]&& prod.images[0].image} alt=""  className='w-32 h-24'/>
-=======
-             <img src={prod.images[0] &&  prod.images[0].image} alt=""  className='w-32 h-24'/>
->>>>>>> e4913f39ee2ecdeb602908df6cfcb560947b7fc8
                 </td>
                 <td className="px-6 py-4">
                     {prod.description}

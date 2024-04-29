@@ -2,14 +2,18 @@
 import { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { FiHeart } from "react-icons/fi";
-import { IoPhonePortraitSharp } from "react-icons/io5"
 import { MdSportsBaseball, MdHome } from 'react-icons/md';
 import { RiComputerLine, RiBook3Line, RiBriefcaseLine, RiCameraLine } from 'react-icons/ri';
+import { IoPhonePortraitSharp } from "react-icons/io5"
 import { LiaGamepadSolid } from "react-icons/lia";
 import Link from "next/link";
 import Nav from "../../Navbar/page";
 import { useRouter } from 'next/navigation';
+import { FaHeadphonesSimple } from "react-icons/fa6";
 
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 
 
@@ -57,6 +61,20 @@ const addtoCart=(obj)=>{
         })
     }
 
+    const like= async (obj)=>{
+        try {
+      fetch(`http://localhost:8080/favorit/like`,{method:'POST', headers: {
+         'Content-type': 'application/json'},
+          body:JSON.stringify(obj)
+       })
+       .then((response) => {response.json(); setRefresh(true)})
+      
+     }
+         
+     catch (error) {console.log("error")}
+         }
+
+
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -97,34 +115,39 @@ const addtoCart=(obj)=>{
         }
     }
 
-  return (
+  return (  
    <>
    <Nav/>
         <div className="text-center p-10" >
     
                 <div className="flex justify-center">
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer" onClick={() => navigate("/sorteproducts/Sports")}>
+                    <div className="flex flex-col items-center mr-8   cursor-pointer" onClick={() => navigate("/sorteproducts/Sports")}>
                         <MdSportsBaseball className="text-gray-500 w-28 h-8" />
-                       <span className="block text-center  text-black-500">Sports</span>
+                       {/* <span className="block text-center  text-black-500">Sports</span> */}
                     </div>
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Phones")}>
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Phones")}>
                         <IoPhonePortraitSharp className="text-gray-500 w-28 h-8" />
-                           <span className="block text-center ">Phones</span> 
+                           {/* <span className="block text-center ">Phones</span>  */}
                     </div>
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Gaming")}>
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Gaming")}>
                         <LiaGamepadSolid className="text-gray-500 w-28 h-8" />
-                          <span className="block text-center">Gaming</span> 
+                          {/* <span className="block text-center">Gaming</span>  */}
                     </div>
                  
-                    <div className="flex flex-col items-center mr-8  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer"  onClick={() => navigate("/sorteproducts/Computers")}>
+                    <div className="flex flex-col items-center mr-8   cursor-pointer"  onClick={() => navigate("/sorteproducts/Computers")}>
                         <RiComputerLine className="text-gray-500 w-28 h-8" />
-                       <span className="block text-center">Computers</span>
+                       {/* <span className="block text-center">Computers</span> */}
                     </div>
             
-                    <div className="flex flex-col items-center  shadow-md rounded-xl duration-500  hover:shadow-xl cursor-pointer" onClick={() => navigate("/sorteproducts/Cameras")}>
+                    <div className="flex flex-col items-center   cursor-pointer" onClick={() => navigate("/sorteproducts/Cameras")}>
                         <RiCameraLine className="text-gray-500 w-28 h-8" />
-                        <span className="block text-center">Cameras</span>
+                        {/* <span className="block text-center">Cameras</span> */}
                     </div>
+                    <div className="flex flex-col items-center   cursor-pointer" onClick={() => navigate("/sorteproducts/Headphones")}>
+                        <FaHeadphonesSimple className="text-gray-500 w-28 h-8" />
+                        {/* <span className="block text-center">Cameras</span> */}
+                    </div>
+
                 </div>
     
     <section
@@ -141,14 +164,27 @@ const addtoCart=(obj)=>{
              
                         <div className="flex justify-between">
                             <button onClick={()=>{addtoCart({product:product,userIduser:userId})}}><LuShoppingCart className="text-black w-28  h-8" /></button>
-                            <button><FiHeart className="text-black w-28  h-8" /></button>
+                            <button onClick={()=>{like({product:product,userIduser:userId})}}><FiHeart className="text-black w-28  h-8" /></button>
                         </div>
                 <div className="px-4 py-3 w-72">
               <div> {helperTagPromotion(product)}</div>
                     <span className="text-gray-400 mr-3 uppercase text-xs">{product.categories[0].categoryname}</span>
                     <p className="text-lg font-bold text-black truncate block capitalize text-left">{product.productName}</p> <br />
                     <span className="text-gray-400 mr-3 uppercase text-sm">{product.description}</span>
-                   
+                    
+
+                    <Box
+        sx={{
+          '& > legend': { mt: 2 },
+        }}
+      >
+        <Typography component="legend"> </Typography>
+        <Rating size="small"
+        value=  { (product.reviews.reduce((total, ele) => (total + ele.review), 0) / product.reviews.length).toFixed(1) }
+//   onChange={(event,newValue)=>{updateRatings(prod.prodId,{ratings:newValue})}}
+
+        />
+    </Box>
                     <div className="flex items-center">
                       
                     </div>

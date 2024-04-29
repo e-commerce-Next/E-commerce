@@ -32,15 +32,9 @@ const SellerAddProduct = (props) => {
     const userId =  localStorage.getItem("id")
     console.log(userId);
 
-    const add = () => {
+    const add = (id,obj) => {
 
-        axios.post(`http://localhost:8080/product/addpro/${props.params.id}`, {
-            productName: pName,
-            description: productDescription,
-            quantity: quantity,
-            price: productPrice,
-            promotion: productPromotion
-        }).then(() => {
+        axios.post(`http://localhost:8080/product/addpro/${props.params.id}`, obj).then(() => {
             
         }).catch((err) => { 
             console.log('err', err)
@@ -144,7 +138,12 @@ const SellerAddProduct = (props) => {
                         <button
                             type="button"
                             className="ml-4 px-6 py-2 text-sm font-medium text-white bg-red-500 border border-transparent rounded-lg focus:outline-none hover:bg-red-600"
-                            onClick={() => { add(); navigate(`/Seller/${userId}`); }}
+                            onClick={() => { add(userId,{
+                                productName: pName,
+                                description: productDescription,
+                                quantity: quantity,
+                                price: productPrice,
+                            }); navigate(`/Seller/${userId}`); }}
                         >
                             Save Changes
                         </button>
